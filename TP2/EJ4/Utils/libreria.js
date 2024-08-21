@@ -1,4 +1,4 @@
-$(document).ready(function(){
+/*$(document).ready(function(){
     $("#form5").validate({
     
         rules : {
@@ -45,4 +45,4 @@ $(document).ready(function(){
             form.submit();
         }
     });
-    });
+    });*/

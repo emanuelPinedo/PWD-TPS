@@ -1,13 +1,13 @@
 <?php
-include_once "../../funciones/datasubmited.php";
-include_once "../../control/control.php";
+include_once "../../../EJ4/Utils/datasubmited.php";
+include_once "../../Control/control4.php";
 
 
 $datos = dataSubmitted();
 
 $obj = new control();
 
-$respuesta = $obj->decirquiensos($datos);
+$respuesta = $obj->Cinema($datos);
 
 ?>
 
@@ -25,7 +25,8 @@ $respuesta = $obj->decirquiensos($datos);
 <?php
 echo $respuesta;
 ?>
-
+<br>
+<a href="http://localhost/PWD/TP2/EJ4/Vista/ej4.php">Volver</a>
     
 </body>
 </html>
