@@ -1,43 +1,79 @@
 $(document).ready(function(){
-    $("#form5").validate({
+    $("#form3").validate({
     
         rules : {
-            nombre : {
+            titulo : {
                 required : true
             },
-            apellido : {
+            actores : {
                 required :true
             },
-            edad : {
+            director : {
                 required :true
             },
-            direccion : {
+            guion : {
                 required : true
             },
-            sexo : {
+            produccion : {
                 required : true
             },
-            estudios : {
+            anio : {
+                required :true
+            },
+            nacionalidad : {
+                required :true
+            },
+            genero : {
+                required :true
+            },
+            duracion : {
+                required :true
+            },
+            restricciones : {
+                required :true
+            },
+            sinopsis : {
+                required :true
+            },
+            imagen : {
                 required :true
             }
         },
         messages : {
-            nombre : {
+            titulo : {
                 required : "Este campo es obligatorio"
             },
-            apellido : {
+            actores : {
                 required : "Este campo es obligatorio"
             },
-            edad : {
+            director : {
                 required : "Este campo es obligatorio"
             },
-            direccion : {
+            guion : {
                 required : "Este campo es obligatorio"
             },
-            sexo : {
+            produccion : {
                 required : "Este campo es obligatorio"
             },
-            estudios : {
+            anio : {
+                required : "Este campo es obligatorio"
+            },
+            nacionalidad : {
+                required : "Este campo es obligatorio"
+            },
+            genero : {
+                required : "Este campo es obligatorio"
+            },
+            duracion : {
+                required : "Este campo es obligatorio"
+            },
+            restricciones : {
+                required : "Este campo es obligatorio"
+            },
+            sinopsis : {
+                required : "Este campo es obligatorio"
+            },
+            imagen : {
                 required : "Este campo es obligatorio"
             }
         },

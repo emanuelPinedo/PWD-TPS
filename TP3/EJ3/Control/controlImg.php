@@ -2,7 +2,7 @@
 class ControlImg{
     private $dir;
     public function __construct(){
-        $this->dir = "../../Archivos/";
+        $this->dir = "../../Vista/Assets/Archivos/";
     }
     public function getDir(){
         return $this->dir;

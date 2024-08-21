@@ -4,7 +4,7 @@ class Archivo{
     private $dir;
 
     public function __construct(){
-        $this->dir = "../../Archivos/";
+        $this->dir = "../../Vista/Assets/Archivos/";
     }
 
     public function getDir(){
@@ -17,6 +17,8 @@ class Archivo{
 
     public function verificaTipo($archivo) {
         // Definir los tipos MIME válidos
+        //'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+        //el de arriba es para docx q es la version moderna de word.
         $tiposValidos = ['application/msword', 'application/pdf'];
         $tamanoMaximo = 2 * 1024 * 1024; // 2 MB en bytes
     
