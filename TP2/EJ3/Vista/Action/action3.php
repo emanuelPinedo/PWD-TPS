@@ -11,8 +11,6 @@ $respuesta = $obj->bienvenidaUser($datos);
 
 ?>
 
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>

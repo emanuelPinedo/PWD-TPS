@@ -15,7 +15,6 @@ class control{
         $duracion = $datos['duracion'];
         $restricciones = $datos['restricciones'];
         $sinopsis = $datos['sinopsis'];
-        
 
         return [
             'titulo' => $titulo,
@@ -28,7 +27,7 @@ class control{
             'genero' => $genero,
             'duracion' => $duracion,
             'restricciones' => $restricciones,
-            'sinopsis' => $sinopsis
+            'sinopsis' => $sinopsis,
         ];
     }
 }

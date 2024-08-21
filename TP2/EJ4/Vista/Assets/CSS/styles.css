@@ -1,0 +1,28 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    max-width: 100%;
+    background-color: rgb(8, 77, 180);
+    background-size: cover;
+    background-position: center;
+    position: relative;
+} h1{
+    color: rgb(37, 136, 251);
+}
+
+div{
+    background-color: rgb(229, 196, 137);
+}
+
+p{
+    color: green;
+}
