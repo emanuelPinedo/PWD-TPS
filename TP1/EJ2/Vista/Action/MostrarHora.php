@@ -18,6 +18,6 @@
 <body>
     <h1>Total de Horas Cursadas por semana</h1>
     <p><?php echo "El total de horas por semana es: " . $totalHoras; ?></p>
-    <a href="http://localhost/PWD/TP1/EJ2/Vista/ej2.php">Volver</a>
+    <a href="http://localhost/PWD-TPS/TP1/EJ2/Vista/ej2.php">Volver</a>
 </body>
 </html>
