@@ -11,7 +11,16 @@ class control{
         $sexo = $datos['sexo'];
         $estudio = $datos['estudios'];
 
-        $rta=  "Mi nombre es $nombre y mi apellido $apellido,tengo $edad y vivo en $direccion, soy $sexo y mis estudios son: $estudio";
+        $mensajeEstudio = "";
+        if($estudio == 0){
+            $mensajeEstudio = "no poseo estudios";
+        }else if($estudio == 1){
+            $mensajeEstudio = "poseo estudios primarios";
+        }else if($estudio ==2){
+            $mensajeEstudio = "poseo estudios secundarios";
+        }
+
+        $rta=  "Mi nombre es $nombre y mi apellido $apellido, tengo $edad y vivo en $direccion, soy $sexo y $mensajeEstudio";
         return $rta;
     }
 
