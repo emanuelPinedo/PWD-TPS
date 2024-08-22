@@ -24,7 +24,7 @@ $respuesta = $obj->ej8($datos);
 echo "El cliente va a pagar $respuesta";
 ?>
 <br>
-<a href="http://localhost/PWD/TP1/EJ8/Vista/ej8.php">Volver</a>
+<a href="http://localhost/PWD-TPS/TP1/EJ8/Vista/ej8.php">Volver</a>
 
     
 </body>
