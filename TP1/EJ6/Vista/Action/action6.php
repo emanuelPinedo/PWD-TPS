@@ -28,7 +28,7 @@ echo $respuesta;
 echo "<br>\nLa cantidad de deportes elegidos es de: $deportes ";
 ?>
 <br>
-<a href="http://localhost/PWD/TP1/EJ6/Vista/ej6.php">Volver</a>
+<a href="http://localhost/PWD-TPS/TP1/EJ6/Vista/ej6.php">Volver</a>
 
     
 </body>
