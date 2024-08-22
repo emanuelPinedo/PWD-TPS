@@ -10,7 +10,7 @@
 <form action="./Action//action8.php" method="post" id = "form8">
 
     <label for="edad">Edad:</label>
-    <input type="text" name="edad" id="edad" required>
+    <input type="number" name="edad" id="edad" required max="99">
     <br>
     <label for="estudio">Estudio</label>
     <input type="radio" name="estudios" value="estudio" id="estudio" required>
@@ -19,6 +19,8 @@
     <input type="radio" name="estudios" value="noestudio" id="noestudio" required>
     <br>
     <input type="submit" name="enviar" id="enviar">
+    <br><br>
+    <button type="reset">Limpiar</button>
 
 </form>
 </body>
