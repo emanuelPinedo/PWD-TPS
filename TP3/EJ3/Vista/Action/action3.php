@@ -101,7 +101,7 @@ if ($rta == 0) {
     <p><strong>Sinopsis:</strong> <?php echo $respuesta['sinopsis']; ?></p>
     <?php echo $textoAMostrar; ?>
     <br>
-    <a href="http://localhost/PWD/TP2/EJ4/Vista/ej4.php">Volver</a>
+    <a href="http://localhost/PWD/TP3/EJ3/Vista/ej3.php">Volver</a>
 </div>
     
 </body>

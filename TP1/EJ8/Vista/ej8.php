@@ -19,7 +19,6 @@
     <input type="radio" name="estudios" value="noestudio" id="noestudio" required>
     <br>
     <input type="submit" name="enviar" id="enviar">
-    <br><br>
     <button type="reset">Limpiar</button>
 
 </form>
