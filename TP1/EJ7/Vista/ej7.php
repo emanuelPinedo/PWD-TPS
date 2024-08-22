@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Operacion Matematica</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
-    <script src="../Utils//libreria.js"></script>
+    <script src="../Utils//libreria.js"></script> -->
 </head>
 <body>
     
@@ -20,10 +20,11 @@ formulario:</h3>
 
     <form action="./Action//action7.php" method="post" id="form7">
     <label for="num1">N1</label>
-    <input type="text" id="num1" name="numero1">
-    <br>
+    <input type="text" id="num1" name="numero1" required>
+    <br><br>
     <label for="num2">N2</label>
-    <input type="text" id="num2" name="numero2">
+    <input type="text" id="num2" name="numero2" required>
+    <br>
 
     <br>
     <select name="operacion" id="form">
