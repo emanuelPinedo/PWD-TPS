@@ -22,6 +22,6 @@ $mensaje = $obj->vernro($datos);
 <body>
     <h1>Ver número ingresado</h1>
     <p><?php echo "El número ingresado es " . $mensaje; ?></p>
-    <a href="http://localhost/PWD/TP1/EJ1/Vista/ej1.php">Volver atras</a>
+    <a href="http://localhost/PWD-TPS/TP2/EJ2/EJ1/Vista/ej1.php">Volver atras</a>
 </body>
 </html>
