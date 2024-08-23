@@ -16,8 +16,8 @@ if ($rta == 0) {
     $img = "<p>ERROR: no se pudo cargar el archivo </p>";
 } elseif ($rta == 1) {
     //arreglar que no se muestre la imagen (se sube pero no se ve)
-    $rutaArchivo = $objImg->getDir() . $datos['imagen']['name'];
-    $img = "<img src='" . $rutaArchivo . "' alt='Imagen de la película'>";
+    $rutaArchivo = $objImg->getUrlDir() . $datos['imagen']['name'];
+    $img = "<img src='" . $rutaArchivo . "' alt='Imagen de la película'>";;
 } elseif ($rta == -1) {
     $img = "<p>ERROR: no se pudo cargar el archivo. No se pudo acceder al archivo Temporal</p>";
 } else {
@@ -81,6 +81,12 @@ if ($rta == 0) {
             color: #0066cc;
             font-size: 16px;
         }
+
+        img{
+            max-width: 600px;
+            max-height: 600px;
+        }
+
     </style>
 </head>
 <body>

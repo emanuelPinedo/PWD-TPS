@@ -1,14 +1,26 @@
 <?php
 class ControlImg{
     private $dir;
+    private $urlDir;
+
     public function __construct(){
-        $this->dir = "../../Vista/Assets/Imagenes/";
+        $this->dir = "../../Vista/Assets/Imagenes/";//Este se usa para subir la imagen
+        $this->urlDir = "/PWD-TPS/TP3/EJ3/Vista/Assets/Imagenes/";//Este se usa para mostrar la imagen
     }
+
     public function getDir(){
         return $this->dir;
     }
 
     public function setDir($dir){
+        $this->dir = $dir;
+    }
+
+    public function getUrlDir() {
+        return $this->urlDir;
+    }
+
+    public function setUrlDir($dir){
         $this->dir = $dir;
     }
 
