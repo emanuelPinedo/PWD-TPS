@@ -9,7 +9,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="../../EJ3/Vista/Assets/libreria.js"></script>
-    <link rel="stylesheet" href="../../../TP2//EJ3//Vista//Assets//CSS//styles.css">
+    <link rel="stylesheet" href="../../../TP2/EJ3/Vista/Assets/CSS/styles.css">
 </head>
 <body>
 <div class="container d-flex justify-content-center align-items-center" style="min-height: 100vh;">
