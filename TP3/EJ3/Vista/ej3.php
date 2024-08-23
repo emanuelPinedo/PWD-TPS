@@ -53,8 +53,13 @@
                             <input type="text" class="form-control" id="nacionalidad" name="nacionalidad">
                         </div>
                         <div class="col-md-3">
-                            <label for="genero" class="form-label"><strong>Genero</strong></label>
-                            <input type="text" class="form-control" id="genero" name="genero">
+                            <label for="genero" class="form-label"><strong>Género</strong></label>
+                            <select class="form-select" id="genero" name="genero">
+                                <option value="Comedia">Comedia</option>
+                                <option value="Acción">Acción</option>
+                                <option value="Romance">Romance</option>
+                                <option value="Otras">Otras</option>
+                            </select>
                         </div>
                     </div>
                     <div class="row mb-3">

@@ -16,7 +16,7 @@
                 <h2>Cinem@s</h2>
             </div>
             <div class="card-body">
-                <form action="./Action//action3.php" method="post" enctype="multipart/form-data" id="form4">
+                <form action="./Action//action4.php" method="post" enctype="multipart/form-data" id="form4">
                     <div class="row mb-3">
                         <div class="col-md-6">
                             <label for="titulo" class="form-label"><strong>Título</strong></label>
@@ -53,8 +53,13 @@
                             <input type="text" class="form-control" id="nacionalidad" name="nacionalidad">
                         </div>
                         <div class="col-md-3">
-                            <label for="genero" class="form-label"><strong>Genero</strong></label>
-                            <input type="text" class="form-control" id="genero" name="genero">
+                            <label for="genero" class="form-label"><strong>Género</strong></label>
+                            <select class="form-select" id="genero" name="genero">
+                                <option value="Comedia">Comedia</option>
+                                <option value="Acción">Acción</option>
+                                <option value="Romance">Romance</option>
+                                <option value="Otras">Otras</option>
+                            </select>
                         </div>
                     </div>
                     <div class="row mb-3">
@@ -67,7 +72,6 @@
                             <label class="form-label"><strong>Restricciones de edad</strong></label>
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" name="restricciones" id="todosPublico" value="Todos los públicos">
-                                <br>
                                 <label class="form-check-label" for="todosPublico">Todo Público</label>
                             </div>
                             <div class="form-check">
