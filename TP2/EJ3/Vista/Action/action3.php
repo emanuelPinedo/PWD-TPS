@@ -23,6 +23,6 @@ $respuesta = $obj->bienvenidaUser($datos);
 <?php
 echo $respuesta;
 ?>
-<br><a href="http://localhost/PWD/TP2/EJ3/Vista/ej3.php">Volver</a>
+<br><a href="http://localhost/PWD-TPS/TP2/EJ3/Vista/ej3.php">Volver</a>
 </body>
 </html>

@@ -86,7 +86,7 @@ $respuesta = $obj->Cinema($datos);
     <p><strong>Restricciones de edad:</strong> <?php echo $respuesta['restricciones']; ?></p>
     <p><strong>Sinopsis:</strong> <?php echo $respuesta['sinopsis']; ?></p>
     <br>
-    <a href="http://localhost/PWD/TP2/EJ4/Vista/ej4.php">Volver</a>
+    <a href="http://localhost/PWD-TPS/TP2/EJ4/Vista/ej4.php">Volver</a>
 </div>
     
 </body>

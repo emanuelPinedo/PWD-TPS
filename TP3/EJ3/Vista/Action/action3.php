@@ -13,16 +13,16 @@ $objImg = new ControlImg();
 $rta = $objImg->subirArchivo($_FILES);
 
 if ($rta == 0) {
-    $textoAMostrar = "<p>ERROR: no se pudo cargar el archivo </p>";
+    $img = "<p>ERROR: no se pudo cargar el archivo </p>";
 } elseif ($rta == 1) {
+    //arreglar que no se muestre la imagen (se sube pero no se ve)
     $rutaArchivo = $objImg->getDir() . $datos['imagen']['name'];
-    $textoAMostrar = "<img src='" . $rutaArchivo . "' alt='Imagen de la película'>";
-} elseif ($rta == -2) {
-    $textoAMostrar = "<p>ERROR: no se pudo cargar el archivo. No es una imagen</p>";
+    $img = "<img src='" . $rutaArchivo . "' alt='Imagen de la película'>";
+} elseif ($rta == -1) {
+    $img = "<p>ERROR: no se pudo cargar el archivo. No se pudo acceder al archivo Temporal</p>";
 } else {
-    $textoAMostrar = "<p>ERROR: no se pudo cargar el archivo. No se pudo acceder al archivo Temporal</p>";
+    $img = "<p>ERROR: no se pudo cargar el archivo. No es una imagen</p>";
 }
-
 
 ?>
 <!DOCTYPE html>
@@ -99,9 +99,9 @@ if ($rta == 0) {
     <p><strong>Duración:</strong> <?php echo $respuesta['duracion']; ?> minutos</p>
     <p><strong>Restricciones de edad:</strong> <?php echo $respuesta['restricciones']; ?></p>
     <p><strong>Sinopsis:</strong> <?php echo $respuesta['sinopsis']; ?></p>
-    <?php echo $textoAMostrar; ?>
+    <?php echo $img; ?>
     <br>
-    <a href="http://localhost/PWD/TP3/EJ3/Vista/ej3.php">Volver</a>
+    <a href="http://localhost/PWD-TPS/TP3/EJ3/Vista/ej3.php">Volver</a>
 </div>
     
 </body>

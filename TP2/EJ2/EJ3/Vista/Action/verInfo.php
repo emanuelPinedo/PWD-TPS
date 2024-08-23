@@ -22,6 +22,6 @@ $msj = $proceso->mandarMensaje($datos);
 </head>
 <body>
     <p><?php echo $msj; ?></p>
-    <a href="http://localhost/PWD/TP1/EJ3/Vista/ej3.php">Volver</a>
+    <a href="http://localhost/PWD-TPS/TP2/EJ2/EJ3/Vista/ej3.php">Volver</a>
 </body>
 </html>

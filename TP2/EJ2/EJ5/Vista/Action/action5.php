@@ -26,7 +26,7 @@ $respuesta = $obj->decirquiensos($datos);
 echo $respuesta;
 ?>
 <br><br>
-<a href="http://localhost/PWD/TP1/EJ5/Vista/ej5.php">Volver</a>
+<a href="http://localhost/PWD-TPS/TP2/EJ2/EJ5/Vista/ej5.php">Volver</a>
 
     
 </body>

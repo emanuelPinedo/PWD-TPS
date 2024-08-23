@@ -8,7 +8,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="../../EJ3//Utils//libreria.js"></script>
+    <script src="../../EJ3/Vista/Assets/libreria.js"></script>
     <link rel="stylesheet" href="../../../TP2//EJ3//Vista//Assets//CSS//styles.css">
 </head>
 <body>

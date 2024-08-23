@@ -30,7 +30,7 @@ $num2 = $datos['numero2'];
 echo "El resultado de la operacion: $operacion con los numeros $num1 y $num2: es  $respuesta";
 ?>
 <br>
-<a href="http://localhost/PWD/TP1/EJ7/Vista/ej7.php">Volver</a>
+<a href="http://localhost/PWD-TPS/TP2/EJ2/EJ7/Vista/ej7.php">Volver</a>
     
 </body>
 </html>
