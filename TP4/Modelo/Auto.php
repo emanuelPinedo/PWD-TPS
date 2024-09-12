@@ -1,188 +1,192 @@
 <?php
-class Auto{
+
+class auto
+{
     private $patente;
     private $marca;
     private $modelo;
-    private $objDuenio;
-    private $msjOperacion;
-
+    private $objPersona;
+    private $mensajeoperacion;
     public function __construct()
     {
-        $this->patente = '';
-        $this->marca = '';
-        $this->modelo = '';
-        $this->objDuenio = new Persona();
-        $this->msjOperacion = '';
+        $this->patente = "";
+        $this->marca = "";
+        $this->modelo = "";
+        $this->objPersona;
     }
-
-	public function getPatente() {
-		return $this->patente;
-	}
-
-	public function setPatente($newPatente) {
-		$this->patente = $newPatente;
-	}
-
-	public function getMarca() {
-		return $this->marca;
-	}
-
-	public function setMarca($newMarca) {
-		$this->marca = $newMarca;
-	}
-
-	public function getModelo() {
-		return $this->modelo;
-	}
-
-	public function setModelo($newModelo) {
-		$this->modelo = $newModelo;
-	}
-
-	public function getObjDuenio() {
-		return $this->objDuenio;
-	}
-
-	public function setObjDuenio($newObjDuenio) {
-		$this->objDuenio = $newObjDuenio;
-	}
-
-	public function getMsjOperacion() {
-		return $this->msjOperacion;
-	}
-
-	public function setMsjOperacion($newMsjOperacion) {
-		$this->msjOperacion = $newMsjOperacion;
-	}
-
-    public function setear($patente, $marca, $modelo, $objDuenio){
+    public function setear($patente, $marca, $modelo, $objPersona)
+    {
+        
         $this->setPatente($patente);
         $this->setMarca($marca);
         $this->setModelo($modelo);
-        $this->setObjDuenio($objDuenio);
+        $this->setObjPersona($objPersona);
     }
 
-    //Funcion para realizar Consultas
-	public function buscar(){
+    public function getPatente()
+    {
+        return $this->patente;
+    }
+
+    public function setPatente($patente)
+    {
+        $this->patente = $patente;
+    }
+
+    public function getMarca()
+    {
+        return $this->marca;
+    }
+
+    public function setMarca($marca)
+    {
+        $this->marca = $marca;
+    }
+
+    public function getModelo()
+    {
+        return $this->modelo;
+    }
+
+    public function setModelo($modelo)
+    {
+        $this->modelo = $modelo;
+    }
+
+    public function getObjPersona()
+    {
+        return $this->objPersona;
+    }
+
+    public function setObjPersona($objPersona)
+    {
+        $this->objPersona = $objPersona;
+    }
+
+    public function getMensajeoperacion()
+    {
+        return $this->mensajeoperacion;
+    }
+
+    public function setMensajeoperacion($mensajeoperacion)
+    {
+        $this->mensajeoperacion = $mensajeoperacion;
+
+        return $this;
+    }
+    public function cargar(){
         $resp = false;
-        $base = new BaseDatos();
-        $consulta = "SELECT * FROM auto WHERE patente = ".$this->getPatente();
+        $base=new BaseDatos();
+        $sql="SELECT * FROM auto WHERE patente = ".$this->getPatente();
         if ($base->Iniciar()) {
-            $res = $base->Ejecutar($consulta);
+            $res = $base->Ejecutar($sql);
             if($res>-1){
                 if($res>0){
-                    $row2 = $base->Registro();
-                    $objDuenio = new Persona();
-                    $objDuenio->setNroDni($row2['DniDuenio']);
-                    $objDuenio->buscar();
-                    $this->setear($row2['Patente'], $row2['Marca'], $row2['Modelo'], $objDuenio->getNroDni());
-                    
+                    $row = $base->Registro();
+                    $persona = new persona();
+                    $persona->setNroDni($row['DniDuenio']);
+                    $persona->cargar();
+                    $this->setear($row[$persona],$row['Marca'],$row['Modelo'], $row['Patente']);
                 }
             }
         } else {
-            $this->setMsjOperacion($base->getError());
+            $this->setMensajeoperacion("Auto->listar: ".$base->getError());
         }
         return $resp;
-     
-    }
-
-    public function listar($condicion = ""){
-        $array = array();
-        $base = new BaseDatos();
-        $consultaAuto = "SELECT * FROM auto ";
-        if ($condicion != "") {
-            $consultaAuto .= 'WHERE ' . $condicion;
-        }
-        $res = $base->Ejecutar($consultaAuto);
-        if($res>-1){
-            if($res>0){
-                while ($row2 = $base->Registro()){
-                    $auto= new Auto();
-                    $objDuenio = new Persona();
-                    $objDuenio->setNroDni($row2['DniDuenio']);
-                    $objDuenio->buscar();
-                    $auto->setear($row2['Patente'], $row2['Marca'], $row2['Modelo'], $objDuenio);      
-                    array_push($arreglo, $auto);
-                }
-               
-            }
-            
-        } else {
-            $this->setMsjOperacion($base->getError());
-        }
- 
-        return $array;
-    }
-
-	//Funcion para añadir datos
-    public function insertar(){
-        $base = new BaseDatos();
-        $resp = false;
-        $consultaInsert = "INSERT INTO auto(patente,marca, modelo, dniduenio) VALUES 
-		('".$this->getPatente()."','".$this->getMarca()."','".$this->getModelo()."','".$this->getObjDuenio()->getNroDni()."')";
+    
         
-        if($base->Iniciar()){
-            if($base->Ejecutar($consultaInsert)){
+    }
+
+    public function insertar(){
+        $resp = false;
+        $base = new BaseDatos();
+        $objPersona = $this->getObjPersona(); // Obtener el objeto Persona
+        
+        // Verificar si $objPersona es un objeto antes de usarlo
+        if (is_object($objPersona) && method_exists($objPersona, 'getNroDni')) {
+            $dni = $objPersona->getNroDni();
+        } else {
+            $this->setMensajeoperacion("Error: Persona no válida.");
+            return false;
+        }
+    
+        $sql = "INSERT INTO auto(Patente,Marca,Modelo,DniDuenio) VALUES('".$this->getPatente()."','".$this->getMarca() . "','" . $this->getModelo()."','". $dni. "');";
+        
+        if ($base->Iniciar()) {
+            if ($elid = $base->Ejecutar($sql)) {
+                $this->setPatente($elid);
                 $resp = true;
             } else {
-                $this->setMsjOperacion($base->getError());
+                $this->setMensajeoperacion("Auto->insertar: ".$base->getError());
             }
         } else {
-            $this->setMsjOperacion($base->getError());
+            $this->setMensajeoperacion("Auto->insertar: ".$base->getError());
         }
         return $resp;
     }
 
-	//Funcion para modificar la BD según el documento de la persona
     public function modificar(){
         $resp = false;
         $base = new BaseDatos();
-        $consultaUpdate = "UPDATE auto SET marca ='".$this->getMarca()."', modelo= '".$this->getModelo()."', dniduenio = '".$this->getObjDuenio()->getNroDni()."' 
-        WHERE patente= '".$this->getPatente()."'";
-        
-        if($base->Iniciar()){
-            if($base->Ejecutar($consultaUpdate)){
+        $dni = $this->getObjPersona()->getNroDni(); 
+        $sql = "UPDATE auto SET Marca='".$this->getMarca()."', Modelo='".$this->getModelo()."', DniDuenio='".$dni."' WHERE Patente='".$this->getPatente()."'";
+
+        if ($base->Iniciar()) {
+            if ($base->Ejecutar($sql)) {
                 $resp = true;
             } else {
-                $this->setMsjOperacion($base->getError());
+                $this->setMensajeoperacion("Auto->modificar: ".$base->getError());
             }
         } else {
-            $this->setMsjOperacion($base->getError());
+            $this->setMensajeoperacion("Auto->modificar: ".$base->getError());
         }
         return $resp;
     }
 
-	//Funcion para eliminar
+
     public function eliminar(){
         $resp = false;
-        $base =new BaseDatos();
-        $consulta = "DELETE FROM auto WHERE patente=".$this->getPatente();
+        $base=new BaseDatos();
+        $sql="DELETE FROM auto WHERE Patente=".$this->getPatente();
         if ($base->Iniciar()) {
-            if ($base->Ejecutar($consulta)) {
-                $resp = true;
+            if ($base->Ejecutar($sql)) {
+                return true;
             } else {
-                $this->setMsjOperacion($base->getError());
+                $this->setMensajeoperacion("Auto->eliminar: ".$base->getError());
             }
         } else {
-            $this->setMsjOperacion($base->getError());
+            $this->setMensajeoperacion("Auto->eliminar: ".$base->getError());
         }
         return $resp;
     }
 
-    public function leerArray($array){
-        $msj = "";
-        foreach ($array as $elemento){
-            $msj .= $elemento."\n";
+    public static function listar($parametro=''){
+        $arreglo = array();
+        $base = new BaseDatos();
+        $sql = "SELECT * FROM auto ";
+        if ($parametro!="") {
+            $sql.='WHERE '.$parametro;
         }
-        return $msj;
-    }
 
-    public function __toString()
-    {
-        return "\nPatente: " . $this->getPatente().
-        "\nMarca: " . $this->getMarca().
-        "\nModelo: " . $this->getModelo().
-        "\nDni Dueño: " . $this->getObjDuenio()->getNroDni();
+        $res = $base->Ejecutar($sql);
+        
+        if($res>-1){
+            if($res>0){
+                while ($row = $base->Registro()){
+                    $obj= new Auto();
+                    $persona = new Persona();
+                    $persona->setNroDni($row['DniDuenio']);
+                    $persona->cargar();
+                    $obj->setear($row['Patente'], $row['Marca'], $row['Modelo'], $persona);
+                    array_push($arreglo, $obj);
+                }
+            }
+            
+        } else {
+            $this->setMensajeoperacion("Auto->listar: ".$base->getError()); 
+        }
+        return $arreglo;
     }
-
+ 
 }
+?>

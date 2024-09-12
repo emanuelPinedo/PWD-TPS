@@ -1,22 +1,24 @@
 <?php
-class ABMPersona{
+class ABMAuto{
+
+    
     //Espera como parametro un arreglo asociativo donde las claves coinciden con los nombres de las variables instancias del objeto
 
     
     /**
      * Espera como parametro un arreglo asociativo donde las claves coinciden con los nombres de las variables instancias del objeto
      * @param array $param
-     * @return Persona
+     * @return Auto
      */
-    private function cargarObjeto($param) {
+    private function cargarObjeto($param){
         $obj = null;
+        
         if (
-            array_key_exists('NroDni', $param) && array_key_exists('Apellido', $param) &&
-            array_key_exists('Nombre', $param) && array_key_exists('fechaNac', $param) &&
-            array_key_exists('Telefono', $param) && array_key_exists('Domicilio', $param)
+            array_key_exists('Patente', $param) and array_key_exists('Marca', $param) and array_key_exists('Modelo', $param)
+            and array_key_exists('DniDuenio', $param)
         ) {
-            $obj = new Persona();
-            $obj->setear($param['NroDni'], $param['Apellido'], $param['Nombre'], $param['fechaNac'], $param['Telefono'], $param['Domicilio']);
+            $obj = new auto();
+            $obj->setear($param['Patente'], $param['Marca'], $param['Modelo'], $param['DniDuenio']);
         }
         return $obj;
     }
@@ -29,8 +31,10 @@ class ABMPersona{
 
     private function seteadosCamposClaves($param){
         $resp = false;
-        if (isset($param['NroDni']))
+        if (isset($param)){
             $resp = true;
+        }
+
         return $resp;
     }
 
@@ -38,11 +42,18 @@ class ABMPersona{
      * 
      * @param array $param
      */
-    public function alta($param){
-        $resp = false;
-        $elObjtTabla = $this->cargarObjeto($param);
-        if ($elObjtTabla != null and $elObjtTabla->insertar()) {
+    public function alta($datos) {
+        $resp =false;
+        $auto = new Auto();
+        $persona = new Persona();
+        $persona->setNroDni($datos['DniDuenio']);
+        $auto->setear($datos['Patente'], $datos['Marca'], $datos['Modelo'], $persona);
+    
+        // Intentar insertar el auto
+        if ($auto->insertar()) {
             $resp = true;
+        } else {
+            echo "Error al insertar el auto: " . $auto->getMensajeoperacion();
         }
         return $resp;
     }
@@ -63,6 +74,8 @@ class ABMPersona{
 
         return $resp;
     }
+
+
 
     /**
      * permite modificar un objeto
@@ -87,27 +100,27 @@ class ABMPersona{
      */
     public function buscar($param)
     {
+        // echo 'estoy buscando'; 
         $where = " true ";
         if ($param <> NULL) {
-            if (isset($param['NroDni']))
-                $where .= " and NroDni =" . $param['NroDni'];
+            if (isset($param['Patente']))
+                $where .= ' and Patente = ' ."'". $param['Patente']."'";
 
-            if (isset($param['Apellido']))
-                $where .= " and Apellido ='" . $param['Apellido'] . "'";
+            if (isset($param['Marca']))
+                $where .= ' and Marca =' . $param['Marca'] . "'";
 
-            if (isset($param['Nombre']))
-                $where .= " and Nombre ='" . $param['Nombre'] . "'";
+            if (isset($param['Modelo']))
+                $where .= ' and Modelo = ' . $param['Modelo'] . "'";
             
-                if (isset($param['fechaNac']))
-                $where .= " and fechaNac ='" . $param['fechaNac'] . "'";
-            
-                if (isset($param['Telefono']))
-                $where .= " and Telefono ='" . $param['Telefono'] . "'";
-            
-                if (isset($param['Domicilio']))
-                $where .= " and Domicilio ='" . $param['Domicilio'] . "'";
+            if (isset($param['DniDuenio']))
+                $where .= ' and DniDuenio = '."'" . $param['DniDuenio'] . "'";
+            //preguntar sobre el dniDuenio....
+           
+             
         }
-        $arreglo = persona::listar($where);
+       
+        $arreglo = auto::listar($where);
+      
         return $arreglo;
     }
 }
