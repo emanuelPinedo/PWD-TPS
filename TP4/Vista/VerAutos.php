@@ -15,11 +15,11 @@ $tp2ej4 = "../../TP2/EJ4/Vista/ej4.php";
 $tp3ej1 = "../../TP3/EJ1/Vista/ej1.php";
 $tp3ej2 = "../../TP3/EJ2/Vista/ej2.php";
 $tp3ej3 = "../../TP3/EJ3/Vista/ej3.php";
+include_once('../config.php');
 include_once('../Vista/Estructura/header.php');
 /*include_once('../Modelo/Auto.php');
 include_once('../Control/ABMAuto.php');
 include_once('../Modelo/Persona.php');¨*/
-include_once('../config.php');
 
 // Crear una instancia del controlador ABMAuto
 $abmAuto = new ABMAuto();

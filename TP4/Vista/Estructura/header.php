@@ -97,8 +97,21 @@
               } ?>
             </div>
           </li>
+          <li class="ml-5 nav-item dropdown">
+            <button class="btn btn-primary dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              TP4
+            </button>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item" href="./buscarAutos.php">Buscar Auto</a>
+              <a class="dropdown-item" href="./BuscarPersona.php">Buscar Persona</a>
+              <a class="dropdown-item" href="./CambioDuenio.php">Cambio de Dueño</a>
+              <a class="dropdown-item" href="./listaPersonas.php">Listado de Personas</a>
+              <a class="dropdown-item" href="./VerAutos.php">Listado de Autos</a>
+              <a class="dropdown-item" href="./NuevaPersona.php">Crear Persona</a>
+              <a class="dropdown-item" href="./NuevoAuto.php">Crear Auto</a>
+            </div>
+          </li>
 
-          <a class="ml-5 btn btn-primary" href="#">TP4</a>
         </ul>
       </div>
     </nav>
