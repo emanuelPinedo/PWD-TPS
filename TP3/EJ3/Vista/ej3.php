@@ -16,7 +16,7 @@ $tp2ej4 = "../../../TP2/EJ4/Vista/ej4.php";
 $tp3ej1 = "../../EJ1/Vista/ej1.php";
 $tp3ej2 = "../../EJ2/Vista/ej2.php";
 $tp3ej3 = "#";
-$tp4 = "../../../TP4/Vista/ejercicio.php";
+$tp4 = "../../../TP4/Vista/VerAutos.php";
 include "../../../estructura/header.php" ?>
 <main>
   <div class="container mt-5">
