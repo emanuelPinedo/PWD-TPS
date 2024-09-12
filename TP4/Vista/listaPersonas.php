@@ -17,24 +17,19 @@ $tp3ej2 = "../../TP3/EJ2/Vista/ej2.php";
 $tp3ej3 = "../../TP3/EJ3/Vista/ej3.php";
 include_once "../config.php";
 include_once('../Vista/Estructura/header.php');
-/* "../Utils/funciones.php";
-include_once "../Modelo/Persona.php";
-include_once "../Control/ABMPersona.php";*/
+// include_once "../Utils/funciones.php";
+// include_once "../Modelo/Persona.php";
+// include_once "../Control/ABMPersona.php";
 
 $controlador = new ABMPersona();
 
-// Obtener todas las personas
-$personas = $controlador->buscar([]); // Obtener todas las personas
+//obtener personasxd
+$personas = $controlador->buscar([]);
 ?>
 <main class="pl-5 pr-5">
   <div class="d-flex mt-2">
-
     <h1 class="mr-3 mt-2 text-primary">Consigna</h1>
-    <p class="ml-3 mt-2">– Crear una página 'listaPersonas.php' que muestre un listado con las personas que se
-      encuentran cargadas y un link a otra página “autosPersona.php” que recibe un dni de una persona y muestra
-      los datos de la persona y un listado de los autos que tiene asociados. Recordar usar la capa de control antes
-      generada, no se puede acceder directamente a las clases del ORM.
-    </p>
+    <p class="ml-3 mt-2">– Crear una página 'listaPersonas.php' que muestre un listado con las personas que se encuentran cargadas y un link a otra página “autosPersona.php” que recibe un dni de una persona y muestra los datos de la persona y un listado de los autos que tiene asociados. Recordar usar la capa de control antes generada, no se puede acceder directamente a las clases del ORM.</p>
   </div>
   <h1 class="text-primary">Listado de Personas</h1>
   <table class="w-100 table table-hover text-center">
@@ -47,15 +42,14 @@ $personas = $controlador->buscar([]); // Obtener todas las personas
       </tr>
     </thead>
     <?php
-    // Mostrar los datos de cada persona
     if ($personas) {
       foreach ($personas as $persona) {
         echo "<tbody>";
         echo "<tr>";
-        echo "<td>" . htmlspecialchars($persona->getNroDni()) . "</td>";
-        echo "<td>" . htmlspecialchars($persona->getNombre()) . "</td>";
-        echo "<td>" . htmlspecialchars($persona->getApellido()) . "</td>";
-        echo "<td><a href='../Vista/Action/autosPersona.php?dni=" . urlencode($persona->getNroDni()) . "'>Ver Autos</a></td>";
+        echo "<td>" . htmlspecialchars($persona['NroDni']) . "</td>";
+        echo "<td>" . htmlspecialchars($persona['Nombre']) . "</td>";
+        echo "<td>" . htmlspecialchars($persona['Apellido']) . "</td>";
+        echo "<td><a href='../Vista/Action/autosPersona.php?dni=" . urlencode($persona['NroDni']) . "'>Ver Autos</a></td>";
         echo "</tr>";
         echo "</tbody>";
       }

@@ -74,27 +74,27 @@ class auto
 
         return $this;
     }
-    public function cargar(){
+
+    public function cargar() {
         $resp = false;
-        $base=new BaseDatos();
-        $sql="SELECT * FROM auto WHERE Patente = ".$this->getPatente();
+        $base = new BaseDatos();
+        $sql = "SELECT * FROM auto WHERE Patente = '" . $this->getPatente() . "'";
         if ($base->Iniciar()) {
             $res = $base->Ejecutar($sql);
-            if($res>-1){
-                if($res>0){
+            if ($res > -1) {
+                if ($res > 0) {
                     $row = $base->Registro();
-                    $persona = new persona();
+                    $persona = new Persona();
                     $persona->setNroDni($row['DniDuenio']);
-                    $persona->cargar();
-                    $this->setear($row['Patente'],$row['Marca'],$row['Modelo'], $row[$persona]);
+                    $persona->cargar(); // Cargar la persona
+                    $this->setear($row['Patente'], $row['Marca'], $row['Modelo'], $persona);
+                    $resp = true;
                 }
             }
         } else {
-            $this->setMensajeoperacion("Auto->listar: ".$base->getError());
+            $this->setMensajeoperacion("Auto->cargar: " . $base->getError());
         }
         return $resp;
-    
-        
     }
 
     public function insertar(){
@@ -125,22 +125,31 @@ class auto
         return $resp;
     }
 
-    public function modificar(){
-        $resp = false;
-        $base = new BaseDatos();
-        $dni = $this->getObjPersona()->getNroDni(); 
-        $sql = "UPDATE auto SET Marca='".$this->getMarca()."', Modelo='".$this->getModelo()."', DniDuenio='".$dni."' WHERE Patente='".$this->getPatente()."'";
+    public function modificar()
+    {
+    $resp = false;
+    $base = new BaseDatos();
+    $objPersona = $this->getObjPersona(); // Obtener el objeto Persona
 
-        if ($base->Iniciar()) {
-            if ($base->Ejecutar($sql)) {
-                $resp = true;
-            } else {
-                $this->setMensajeoperacion("Auto->modificar: ".$base->getError());
-            }
+    if (is_object($objPersona) && method_exists($objPersona, 'getNroDni')) {
+        $dni = $objPersona->getNroDni();
+    } else {
+        $this->setMensajeoperacion("Error: Persona no válida.");
+        return false;
+    }
+
+    $sql = "UPDATE auto SET Marca='" . $this->getMarca() . "', Modelo='" . $this->getModelo() . "', DniDuenio='" . $dni . "' WHERE Patente='" . $this->getPatente() . "'";
+
+    if ($base->Iniciar()) {
+        if ($base->Ejecutar($sql)) {
+            $resp = true;
         } else {
-            $this->setMensajeoperacion("Auto->modificar: ".$base->getError());
+            $this->setMensajeoperacion("Auto->modificar: " . $base->getError());
         }
-        return $resp;
+    } else {
+        $this->setMensajeoperacion("Auto->modificar: " . $base->getError());
+    }
+    return $resp;
     }
 
 

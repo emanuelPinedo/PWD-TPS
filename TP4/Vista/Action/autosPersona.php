@@ -10,7 +10,8 @@ if (empty($dni)) {
 
 $controladorPersona = new ABMPersona();
 $controladorAuto = new ABMAuto();
-//nashe
+
+// Buscar la persona por dni anashei :v
 $persona = $controladorPersona->buscar(['NroDni' => $dni]);
 
 if ($persona) {
@@ -20,16 +21,16 @@ if ($persona) {
   echo "<table border='1'>";
   echo "<tr><th>DNI</th><th>Nombre</th><th>Apellido</th><th>Fecha de Nacimiento</th><th>Teléfono</th><th>Domicilio</th></tr>";
   echo "<tr>";
-  echo "<td>" . htmlspecialchars($persona->getNroDni()) . "</td>";
-  echo "<td>" . htmlspecialchars($persona->getNombre()) . "</td>";
-  echo "<td>" . htmlspecialchars($persona->getApellido()) . "</td>";
-  echo "<td>" . htmlspecialchars($persona->getFechaNac()) . "</td>";
-  echo "<td>" . htmlspecialchars($persona->getTelefono()) . "</td>";
-  echo "<td>" . htmlspecialchars($persona->getDomicilio()) . "</td>";
+  echo "<td>" . htmlspecialchars($persona['NroDni']) . "</td>";
+  echo "<td>" . htmlspecialchars($persona['Nombre']) . "</td>";
+  echo "<td>" . htmlspecialchars($persona['Apellido']) . "</td>";
+  echo "<td>" . htmlspecialchars($persona['fechaNac']) . "</td>";
+  echo "<td>" . htmlspecialchars($persona['Telefono']) . "</td>";
+  echo "<td>" . htmlspecialchars($persona['Domicilio']) . "</td>";
   echo "</tr>";
   echo "</table>";
 
-  $autos = $controladorAuto->buscar(['DniDuenio' => $persona->getNroDni()]);
+  $autos = $controladorAuto->buscar(['DniDuenio' => $persona['NroDni']]);
 
   echo "<h2>Autos Asociados</h2>";
   echo "<table border='1'>";
@@ -38,9 +39,9 @@ if ($persona) {
   if ($autos) {
     foreach ($autos as $auto) {
       echo "<tr>";
-      echo "<td>" . htmlspecialchars($auto->getPatente()) . "</td>";
-      echo "<td>" . htmlspecialchars($auto->getMarca()) . "</td>";
-      echo "<td>" . htmlspecialchars($auto->getModelo()) . "</td>";
+      echo "<td>" . htmlspecialchars($auto['Patente']) . "</td>";
+      echo "<td>" . htmlspecialchars($auto['Marca']) . "</td>";
+      echo "<td>" . htmlspecialchars($auto['Modelo']) . "</td>";
       echo "</tr>";
     }
   } else {

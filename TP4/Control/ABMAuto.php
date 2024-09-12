@@ -26,13 +26,12 @@ class ABMAuto
   private function cargarObjeto($param)
   {
     $obj = null;
-
     if (
-      array_key_exists('Patente', $param) and array_key_exists('Marca', $param) and array_key_exists('Modelo', $param)
-      and array_key_exists('DniDuenio', $param)
+        array_key_exists('Patente', $param) && array_key_exists('Marca', $param) &&
+        array_key_exists('Modelo', $param) && array_key_exists('DniDuenio', $param)
     ) {
-      $obj = new auto();
-      $obj->setear($param['Patente'], $param['Marca'], $param['Modelo'], $param['DniDuenio']);
+        $obj = new Auto();
+        $obj->setear($param['Patente'], $param['Marca'], $param['Modelo'], $param['DniDuenio']);
     }
     return $obj;
   }
@@ -61,8 +60,8 @@ class ABMAuto
   public function alta($param)
   {
     $resp = false;
-    $elObjtAuto = $this->cargarObjeto($param);
-    if ($elObjtAuto != null && $elObjtAuto->insertar()) {
+    $elObjtTabla = $this->cargarObjeto($param);
+    if ($elObjtTabla != null and $elObjtTabla->insertar()) {
       $resp = true;
     }
     return $resp;
@@ -116,38 +115,55 @@ class ABMAuto
   {
     $resp = false;
     if ($this->seteadosCamposClaves($param)) {
-      $elObjtTabla = $this->cargarObjeto($param);
-      if ($elObjtTabla != null and $elObjtTabla->modificar()) {
-        $resp = true;
-      }
+        $elObjtAuto = $this->cargarObjeto($param);
+        if ($elObjtAuto != null && $elObjtAuto->modificar()) {
+            $resp = true;
+        }
     }
     return $resp;
-  }
+}
 
   /**
    * permite buscar un objeto
    * @param array $param
    * @return array
    */
-  public function buscar($param)
-  {
+  public function buscar($param) {
     $where = " true ";
     if ($param <> NULL) {
-      if (isset($param['Patente']))
-        $where .= " AND Patente = '" . $param['Patente'] . "'";
+        if (isset($param['Patente']))
+            $where .= " AND Patente = '" . $param['Patente'] . "'";
 
-      if (isset($param['Marca']))
-        $where .= " AND Marca = '" . $param['Marca'] . "'";
+        if (isset($param['Marca']))
+            $where .= " AND Marca = '" . $param['Marca'] . "'";
 
-      if (isset($param['Modelo']))
-        $where .= " AND Modelo = '" . $param['Modelo'] . "'";
+        if (isset($param['Modelo']))
+            $where .= " AND Modelo = '" . $param['Modelo'] . "'";
 
-      if (isset($param['DniDuenio']))
-        $where .= ' and DniDuenio = ' . "'" . $param['DniDuenio'] . "'";
+        if (!empty($param['DniDuenio'])) {
+            $where .= " AND DniDuenio = '" . $param['DniDuenio'] . "'";
+        }
     }
 
-    $arreglo = auto::listar($where);
+    $arreglo = Auto::listar($where);
+    // Convertir los objetos a arrays
+    $resultado = [];
+    foreach ($arreglo as $objAuto) {
+        $persona = $objAuto->getObjPersona(); // Asumimos que esto devuelve un objeto Persona
+        
+        $resultado[] = [
+            'Patente' => $objAuto->getPatente(),
+            'Marca' => $objAuto->getMarca(),
+            'Modelo' => $objAuto->getModelo(),
+            'DniDuenio' => [
+              //esto para la lista de autos
+                'NroDni' => $persona->getNroDni(),
+                'Nombre' => $persona->getNombre(),
+                'Apellido' => $persona->getApellido()
+            ]
+        ];
+    }
 
-    return $arreglo;
+    return $resultado; // Retorna el arreglo en lugar de los objetos
   }
 }

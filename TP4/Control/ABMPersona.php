@@ -104,29 +104,43 @@ class ABMPersona
    * @param array $param
    * @return array
    */
-  public function buscar($param)
-  {
+  public function buscar($param) {
     $where = " true ";
     if ($param <> NULL) {
-      if (isset($param['NroDni']))
-        $where .= " and NroDni =" . $param['NroDni'];
+        if (isset($param['NroDni']))
+            $where .= " AND NroDni = '" . $param['NroDni'] . "'";
 
-      if (isset($param['Apellido']))
-        $where .= " and Apellido ='" . $param['Apellido'] . "'";
+        if (isset($param['Apellido']))
+            $where .= " AND Apellido = '" . $param['Apellido'] . "'";
 
-      if (isset($param['Nombre']))
-        $where .= " and Nombre ='" . $param['Nombre'] . "'";
+        if (isset($param['Nombre']))
+            $where .= " AND Nombre = '" . $param['Nombre'] . "'";
 
-      if (isset($param['fechaNac']))
-        $where .= " and fechaNac ='" . $param['fechaNac'] . "'";
+        if (isset($param['fechaNac']))
+            $where .= " AND fechaNac = '" . $param['fechaNac'] . "'";
 
-      if (isset($param['Telefono']))
-        $where .= " and Telefono ='" . $param['Telefono'] . "'";
+        if (isset($param['Telefono']))
+            $where .= " AND Telefono = '" . $param['Telefono'] . "'";
 
-      if (isset($param['Domicilio']))
-        $where .= " and Domicilio ='" . $param['Domicilio'] . "'";
+        if (isset($param['Domicilio']))
+            $where .= " AND Domicilio = '" . $param['Domicilio'] . "'";
     }
-    $arreglo = persona::listar($where);
-    return $arreglo;
+    $arreglo = Persona::listar($where);
+
+    // Convertir los objetos Persona a arrays
+    $resultado = [];
+    foreach ($arreglo as $objPersona) {
+        $resultado[] = [
+            'NroDni' => $objPersona->getNroDni(),
+            'Apellido' => $objPersona->getApellido(),
+            'Nombre' => $objPersona->getNombre(),
+            'fechaNac' => $objPersona->getFechaNac(),
+            'Telefono' => $objPersona->getTelefono(),
+            'Domicilio' => $objPersona->getDomicilio()
+        ];
+    }
+
+    return $resultado; // Retorna el arreglo de personas en lugar de objetos
   }
+
 }

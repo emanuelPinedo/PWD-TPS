@@ -1,35 +1,40 @@
 <?php
-include_once ('../../config.php');
+include_once('../../config.php');
 
 $datos = data_submitted();
 $resp = false;
 
-//obj para manejar los adtos xd
 $objAbmAuto = new ABMAuto();
 $objAbmPersona = new ABMPersona();
 
-// Busco auto x patente
-$auto = $objAbmAuto->buscar(['Patente' => $datos['Patente']]);
+// Busco auto por patente
+$autoArray = $objAbmAuto->buscar(['Patente' => $datos['Patente']]);
 
-if (count($auto) > 0) {
-    $auto = $auto[0];
+if (count($autoArray) > 0) {
+    $auto = $autoArray[0];
 
-    // Buscar persona x dni :v
-    $persona = $objAbmPersona->buscar(['NroDni' => $datos['NroDni']]);
+    // Buscar persona por dni
+    $personaArray = $objAbmPersona->buscar(['NroDni' => $datos['NroDni']]);
     
-    if (count($persona) > 0) {
-        $persona = $persona[0];
+    if (count($personaArray) > 0) {
+        $persona = $personaArray[0];
 
-        // Cambio el dueño nasheee
-        $auto->setObjPersona($persona); //Ingresar al nuevo dueño xd
-        if ($auto->modificar()) {
-            echo "<p>El dueño del auto con la patente {$auto->getPatente()} ha sido cambiado (gooood).</p>";
-            $resp = true;
+        // Ajuste para asegurar que el dato DniDuenio sea correctamente establecido
+        $auto['DniDuenio'] = $persona['NroDni'];
+        
+        // Validar si la patente existe y si el objeto fue cargado correctamente
+        if (isset($auto['Patente'])) {
+            $resp = $objAbmAuto->modificacion($auto);
+            if ($resp) {
+                echo "<p>El dueño del auto con la patente {$auto['Patente']} ha sido cambiado (gooood).</p>";
+            } else {
+                echo "<p>Error, no se pudo cambiar el dueño del auto :c.</p>";
+            }
         } else {
-            echo "<p>Error, no se pudo cmabiar el dueño del auto :c.</p>";
+            echo "<p>Error: La patente no está definida.</p>";
         }
     } else {
-        echo "<p>No se encontró alguien con este dni (nt).</p>";
+        echo "<p>No se encontró una persona con este DNI (nt).</p>";
     }
 } else {
     echo "<p>No se encontró un auto con esta patente xd.</p>";

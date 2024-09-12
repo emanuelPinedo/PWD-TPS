@@ -128,20 +128,27 @@ class BaseDatos extends PDO
      *caso contrario se retorna -1
      */
 
-    private function EjecutarInsert($sql)
-    {
-        $resultado = parent::query($sql);
-        if (!$resultado) {
-            $this->analizarDebug();
-            $id = 0;
-        } else {
-            $id =  $this->lastInsertId();
-            if ($id == 0) {
-                $id = -1;
-            }
-        }
-        return $id;
-    }
+     private function EjecutarInsert($sql)
+     {
+         $id = -1;
+         try {
+             $resultado = parent::query($sql);
+             if (!$resultado) {
+                 $this->analizarDebug();
+             } else {
+                 $id = $this->lastInsertId();
+                 if ($id == 0) {
+                     $id = -1;
+                 }
+             }
+         } catch (PDOException $e) {
+             $this->setError($e->getMessage());
+             if ($this->getDebug()) {
+                 echo "Error en Insert: " . $e->getMessage();
+             }
+         }
+         return $id;
+     }
 
     /**
      * Devuelve la cantidad de filas afectadas por la ejecucion SQL. Si el valor es <0 no se pudo realizar la opercion
@@ -149,16 +156,23 @@ class BaseDatos extends PDO
      * 
      */
     private function EjecutarDeleteUpdate($sql)
-    {
-        $cantFilas = -1;
+{
+    $cantFilas = -1;
+    try {
         $resultado = parent::query($sql);
         if (!$resultado) {
             $this->analizarDebug();
         } else {
-            $cantFilas =  $resultado->rowCount();
+            $cantFilas = $resultado->rowCount();
         }
-        return $cantFilas;
+    } catch (PDOException $e) {
+        $this->setError($e->getMessage());
+        if ($this->getDebug()) {
+            echo "Error en Delete/Update: " . $e->getMessage();
+        }
     }
+    return $cantFilas;
+}
 
     /**
      * Retorna cada uno de los registros de una consulta select
@@ -166,21 +180,27 @@ class BaseDatos extends PDO
      *
      */
 
-    private function EjecutarSelect($sql)
-    {
-        $cant = -1;
-        $resultado = parent::query($sql);
-        if (!$resultado) {
-            $this->analizarDebug();
-        } else {
-
-            $arregloResult = $resultado->fetchAll();
-            $cant = count($arregloResult);
-            $this->setIndice(0);
-            $this->setResultado($arregloResult);
-        }
-        return $cant;
-    }
+     private function EjecutarSelect($sql)
+     {
+         $cant = -1;
+         try {
+             $resultado = parent::query($sql);
+             if (!$resultado) {
+                 $this->analizarDebug();
+             } else {
+                 $arregloResult = $resultado->fetchAll();
+                 $cant = count($arregloResult);
+                 $this->setIndice(0);
+                 $this->setResultado($arregloResult);
+             }
+         } catch (PDOException $e) {
+             $this->setError($e->getMessage());
+             if ($this->getDebug()) {
+                 echo "Error en Select: " . $e->getMessage();
+             }
+         }
+         return $cant;
+     }
 
     /**
      * Devuelve un registro retornado por la ejecucion de una consulta

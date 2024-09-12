@@ -31,7 +31,7 @@ $autos = $abmAuto->buscar(null);
   <div class="d-flex">
     <h1 class="mr-3 mt-2 text-primary">Consigna</h1>
     <p class="ml-3 mt-2">
-      –Crear una pagina php “VerAutos.php”, en ella usando la capa de control correspondiente
+      –Crear una página php “VerAutos.php”, en ella usando la capa de control correspondiente
       mostrar todos los datos de los autos que se encuentran cargados, de los dueños mostrar nombre y apellido.
       En caso de que no se encuentre ningún auto cargado en la base mostrar un mensaje indicando que no hay
       autos cargados.
@@ -41,7 +41,6 @@ $autos = $abmAuto->buscar(null);
   <table class="w-100 table table-hover text-center">
     <h1 class="text-primary">Lista de Autos</h1>
     <?php
-
     if (count($autos) > 0) {
       echo '
       <thead class="thead-dark">
@@ -53,24 +52,23 @@ $autos = $abmAuto->buscar(null);
           <th>Apellido</th>
           <th>DNI</th>
         </tr>
-      </thead>';
-      foreach ($autos as $abmAuto) {
-        $objPerso = $abmAuto->getObjPersona();
-        echo '<tbody>';
-        echo '<tr><td style="width:10px;">' . $abmAuto->getPatente() . '</td>';
-        echo '<td style="width:10px;">' . $abmAuto->getMarca() . '</td>';
-        echo '<td style="width:10px;">' . $abmAuto->getModelo() . '</td>';
-        echo '<td style="width:10px;">' . $objPerso->getNombre() . '</td>';
-        echo '<td style="width:10px;">' . $objPerso->getApellido() . '</td>';
-        echo '<td style="width:10px;">' . $objPerso->getNroDni() . '</td>';
+      </thead>
+      <tbody>';
+      foreach ($autos as $auto) {
+        $persona = $auto['DniDuenio']; // Cambiar esto a un array
+        echo '<tr>';
+        echo '<td>' . htmlspecialchars($auto['Patente']) . '</td>';
+        echo '<td>' . htmlspecialchars($auto['Marca']) . '</td>';
+        echo '<td>' . htmlspecialchars($auto['Modelo']) . '</td>';
+        echo '<td>' . htmlspecialchars($persona['Nombre']) . '</td>';
+        echo '<td>' . htmlspecialchars($persona['Apellido']) . '</td>';
+        echo '<td>' . htmlspecialchars($persona['NroDni']) . '</td>';
         echo '</tr>';
-        echo '</tbody>';
       }
+      echo '</tbody>';
     } else {
-
       echo '<h3> No se encontraron registros </h3>';
     }
-
     ?>
   </table>
 </main>

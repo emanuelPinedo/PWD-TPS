@@ -5,10 +5,10 @@ $datos = data_submitted();
 $dni = $datos['NroDni'];
 
 $objABMPersona = new ABMPersona();
-//busco a la persona x el dni :v
+// Busca a la persona por el dni :v
 $persona = $objABMPersona->buscar(['NroDni' => $dni]);
 
-if(count($persona) > 0){
+if (count($persona) > 0) {
     $persona = $persona[0];
     ?>
     <!DOCTYPE html>
@@ -20,22 +20,22 @@ if(count($persona) > 0){
     <body>
         <h1>Datos persona</h1>
         <form action="ActualizarDatosPersona.php" method="post">
-            <input type="hidden" name="NroDni" value="<?php echo $persona->getNroDni();?>">
-        
+            <input type="hidden" name="NroDni" value="<?php echo htmlspecialchars($persona['NroDni']); ?>">
+
             <label for="Apellido">Apellido:</label>
-            <input type="text" id="Apellido" name="Apellido" value="<?php echo $persona->getApellido(); ?>">
+            <input type="text" id="Apellido" name="Apellido" value="<?php echo htmlspecialchars($persona['Apellido']); ?>">
 
             <label for="Nombre">Nombre: </label>
-            <input type="text" name="Nombre" id="Nombre" value="<?php echo $persona->getNombre(); ?>">
-            
+            <input type="text" name="Nombre" id="Nombre" value="<?php echo htmlspecialchars($persona['Nombre']); ?>">
+
             <label for="fechaNac">Fecha de Nacimiento:</label>
-            <input type="text" id="fechaNac" name="fechaNac" value="<?php echo $persona->getfechaNac(); ?>">
+            <input type="text" id="fechaNac" name="fechaNac" value="<?php echo htmlspecialchars($persona['fechaNac']); ?>">
 
             <label for="Telefono">Teléfono:</label>
-            <input type="text" id="Telefono" name="Telefono" value="<?php echo $persona->getTelefono(); ?>">
-            
+            <input type="text" id="Telefono" name="Telefono" value="<?php echo htmlspecialchars($persona['Telefono']); ?>">
+
             <label for="Domicilio">Domicilio:</label>
-            <input type="text" id="Domicilio" name="Domicilio" value="<?php echo $persona->getDomicilio(); ?>">
+            <input type="text" id="Domicilio" name="Domicilio" value="<?php echo htmlspecialchars($persona['Domicilio']); ?>">
 
             <input type="submit" value="Actualizar">
             <br>
@@ -45,6 +45,6 @@ if(count($persona) > 0){
     </html>
     <?php
 } else {
-    echo "<p>No hay una persona con este DNI, o no ha sido encontrado xd.</p>";
+    echo "<p>No hay una persona con este DNI, o no ha sido encontrada.</p>";
 }
 ?>
