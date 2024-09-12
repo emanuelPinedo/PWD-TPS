@@ -17,26 +17,38 @@ $tp3ej2 = "../../TP3/EJ2/Vista/ej2.php";
 $tp3ej3 = "../../TP3/EJ3/Vista/ej3.php";
 include_once('../Vista/Estructura/header.php');
 ?>
-<h1>Consigna</h1>
-<p>
-  – Crear una página “CambioDuenio.php” que contenga un formulario en donde se solicite el
-  numero de patente de un auto y un numero de documento de una persona, estos datos deberán ser enviados
-  a una página “accionCambioDuenio.php” en donde se realice cambio del dueño del auto de la patente
-  ingresada en el formulario. Mostrar mensajes de error en caso de que el auto o la persona no se encuentren
-  cargados. Utilizar css y validaciones javaScript cuando crea conveniente. Recordar usar la capa de control
-  antes generada, no se puede acceder directamente a las clases del ORM.
-</p>
+<main class="pl-5 pr-5">
+  <div class="d-flex mt-2">
 
-<h1>Cambiar el Dueño del Auto (mal ahí)</h1>
-<form action="../Vista/Action/actionCambioDuenio.php" method="POST">
-  <label for="patente">Patente del auto:</label>
-  <input type="text" id="patente" name="Patente" required>
-  <br><br>
-  <label for="dni">DNI del nuevo dueño:</label>
-  <input type="text" id="dni" name="NroDni" required>
-  <br><br>
-  <input type="submit" value="Cambiar Dueño">
-</form>
+    <h1 class="mr-3 mt-2 text-primary">Consigna</h1>
+
+    <p class="ml-3 mt-2">
+      – Crear una página “CambioDuenio.php” que contenga un formulario en donde se solicite el
+      numero de patente de un auto y un numero de documento de una persona, estos datos deberán ser enviados
+      a una página “accionCambioDuenio.php” en donde se realice cambio del dueño del auto de la patente
+      ingresada en el formulario. Mostrar mensajes de error en caso de que el auto o la persona no se encuentren
+      cargados. Utilizar css y validaciones javaScript cuando crea conveniente. Recordar usar la capa de control
+      antes generada, no se puede acceder directamente a las clases del ORM.
+    </p>
+  </div>
+
+  <div class="d-flex flex-column align-items-center justify-content-center">
+
+    <h1 class="text-primary">Cambiar el Dueño del Auto (mal ahí)</h1>
+    <form class="pl-5 pr-5 pt-4 pb-4 w-50 bg-light d-flex rounded flex-column align-items-center shadow" action="../Vista/Action/actionCambioDuenio.php" method="POST">
+      <div class="w-100 d-flex justify-content-between">
+        <label for="patente">Patente del auto:</label>
+        <input type="text" id="patente" name="Patente" required>
+      </div>
+      <div class="mt-3 w-100 d-flex justify-content-between">
+        <label for="dni">DNI del nuevo dueño:</label>
+        <input type="text" id="dni" name="NroDni" required>
+      </div>
+      <input class="mt-5 btn btn-primary" type="submit" value="Cambiar Dueño">
+    </form>
+  </div>
+</main>
+
 <?php
 include_once('../Vista/Estructura/footer.php');
 ?>
