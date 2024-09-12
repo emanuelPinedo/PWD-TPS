@@ -1,5 +1,5 @@
 <?php
-$title = "TP4";
+$title = "Ver Autos";
 // $jsFile = "";
 // $cssFile = "";
 $tp1ej1 = "../../TP1/EJ1/Vista/ej1.php";
@@ -30,18 +30,18 @@ $autos = $abmAuto->buscar(null);
 
 <h1>Consigna</h1>
 <p>
-–Crear una pagina php “VerAutos.php”, en ella usando la capa de control correspondiente
-mostrar todos los datos de los autos que se encuentran cargados, de los dueños mostrar nombre y apellido.
-En caso de que no se encuentre ningún auto cargado en la base mostrar un mensaje indicando que no hay
-autos cargados.
+  –Crear una pagina php “VerAutos.php”, en ella usando la capa de control correspondiente
+  mostrar todos los datos de los autos que se encuentran cargados, de los dueños mostrar nombre y apellido.
+  En caso de que no se encuentre ningún auto cargado en la base mostrar un mensaje indicando que no hay
+  autos cargados.
 </p>
 
 <table border="1">
   <h1>Lista de Autos</h1>
-<?php
+  <?php
 
-if(count($autos)>0){
-  echo'<tr>
+  if (count($autos) > 0) {
+    echo '<tr>
   <th>Patente</th>
   <th>Marca</th>
   <th>Modelo</th>
@@ -49,25 +49,24 @@ if(count($autos)>0){
   <th>Apellido</th>
   <th>DNI</th>
 </tr>';
-   foreach ($autos as $abmAuto) { 
+    foreach ($autos as $abmAuto) {
       $objPerso = $abmAuto->getObjPersona();
-       echo '<tr><td style="width:10px;">'.$abmAuto->getPatente().'</td>';
-       echo '<td style="width:10px;">'.$abmAuto->getMarca().'</td>';
-       echo '<td style="width:10px;">'.$abmAuto->getModelo().'</td>';
-       echo '<td style="width:10px;">'.$objPerso->getNombre().'</td>';
-       echo '<td style="width:10px;">'.$objPerso->getApellido().'</td>';
-       echo '<td style="width:10px;">'.$objPerso->getNroDni().'</td>';
-      '</tr>'; 
- }
-}else{
+      echo '<tr><td style="width:10px;">' . $abmAuto->getPatente() . '</td>';
+      echo '<td style="width:10px;">' . $abmAuto->getMarca() . '</td>';
+      echo '<td style="width:10px;">' . $abmAuto->getModelo() . '</td>';
+      echo '<td style="width:10px;">' . $objPerso->getNombre() . '</td>';
+      echo '<td style="width:10px;">' . $objPerso->getApellido() . '</td>';
+      echo '<td style="width:10px;">' . $objPerso->getNroDni() . '</td>';
+      echo '</tr>';
+    }
+  } else {
 
-  echo '<h3> No se encontraron registros </h3>';
+    echo '<h3> No se encontraron registros </h3>';
+  }
 
-}
+  ?>
+</table>
 
-?>
-    </table>  
-  
 <?php
-include_once ('../Vista/Estructura/footer.php');
+include_once('../Vista/Estructura/footer.php');
 ?>
