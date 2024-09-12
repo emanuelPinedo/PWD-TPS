@@ -16,9 +16,9 @@ $tp3ej1 = "../../TP3/EJ1/Vista/ej1.php";
 $tp3ej2 = "../../TP3/EJ2/Vista/ej2.php";
 $tp3ej3 = "../../TP3/EJ3/Vista/ej3.php";
 include_once('../Vista/Estructura/header.php');
-include_once('../Modelo/Auto.php');
+/*include_once('../Modelo/Auto.php');
 include_once('../Control/ABMAuto.php');
-include_once('../Modelo/Persona.php');
+include_once('../Modelo/Persona.php');¨*/
 include_once('../config.php');
 
 // Crear una instancia del controlador ABMAuto
@@ -27,6 +27,14 @@ $abmAuto = new ABMAuto();
 // Buscar todos los autos
 $autos = $abmAuto->buscar(null);
 ?>
+
+<h1>Consigna</h1>
+<p>
+–Crear una pagina php “VerAutos.php”, en ella usando la capa de control correspondiente
+mostrar todos los datos de los autos que se encuentran cargados, de los dueños mostrar nombre y apellido.
+En caso de que no se encuentre ningún auto cargado en la base mostrar un mensaje indicando que no hay
+autos cargados.
+</p>
 
 <table border="1">
   <h1>Lista de Autos</h1>
@@ -61,5 +69,5 @@ if(count($autos)>0){
     </table>  
   
 <?php
-include_once '../../estructura/footer.php';
+include_once ('../Vista/Estructura/footer.php');
 ?>

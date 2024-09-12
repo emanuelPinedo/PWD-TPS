@@ -1,7 +1,20 @@
 <?php
 class ABMPersona{
-    //Espera como parametro un arreglo asociativo donde las claves coinciden con los nombres de las variables instancias del objeto
+    /**
+     * Cargar objeto solo con la clave primaria (nroDni)
+     * @param array $param
+     * @return Persona
+     */
+    private function cargarObjetoConClave($param){
+        $obj = null;
 
+        if (isset($param['NroDni'])){
+            $obj = new Persona();
+            $obj->setNroDni($param['NroDni']);
+            $obj->cargar(); // Busca la persona con el dni proporcionado
+        }
+        return $obj;
+    }
     
     /**
      * Espera como parametro un arreglo asociativo donde las claves coinciden con los nombres de las variables instancias del objeto
@@ -46,21 +59,20 @@ class ABMPersona{
         }
         return $resp;
     }
+    
     /**
-     * permite eliminar un objeto 
+     * Baja de persona
      * @param array $param
      * @return boolean
      */
-    public function baja($param)
-    {
+    public function baja($param){
         $resp = false;
-        if ($this->seteadosCamposClaves($param)) {
-            $elObjtTabla = $this->cargarObjeto($param);
-            if ($elObjtTabla != null and $elObjtTabla->eliminar()) {
+        if ($this->seteadosCamposClaves($param)){
+            $elObjtPersona = $this->cargarObjetoConClave($param);
+            if ($elObjtPersona != null && $elObjtPersona->eliminar()){
                 $resp = true;
             }
         }
-
         return $resp;
     }
 

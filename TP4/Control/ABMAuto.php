@@ -1,9 +1,20 @@
 <?php
 class ABMAuto{
+     /**
+     * Cargar objeto solo con la clave primaria (Patente)
+     * @param array $param
+     * @return Auto
+     */
+    private function cargarObjetoConClave($param){
+        $obj = null;
 
-    
-    //Espera como parametro un arreglo asociativo donde las claves coinciden con los nombres de las variables instancias del objeto
-
+        if (isset($param['Patente'])){
+            $obj = new Auto();
+            $obj->setPatente($param['Patente']);
+            $obj->cargar(); // Busca el auto con la patente proporcionada
+        }
+        return $obj;
+    }
     
     /**
      * Espera como parametro un arreglo asociativo donde las claves coinciden con los nombres de las variables instancias del objeto
@@ -39,10 +50,24 @@ class ABMAuto{
     }
 
     /**
+     * Alta de auto
+     * @param array $param
+     * @return boolean
+     */
+    public function alta($param){
+        $resp = false;
+        $elObjtAuto = $this->cargarObjeto($param);
+        if ($elObjtAuto != null && $elObjtAuto->insertar()){
+            $resp = true;
+        }
+        return $resp;
+    }
+
+    /**
      * 
      * @param array $param
      */
-    public function alta($datos) {
+    /*public function alta($datos) {
         $resp =false;
         $auto = new Auto();
         $persona = new Persona();
@@ -53,25 +78,24 @@ class ABMAuto{
         if ($auto->insertar()) {
             $resp = true;
         } else {
-            echo "Error al insertar el auto: " . $auto->getMensajeoperacion();
+            $auto->getMensajeoperacion();
         }
         return $resp;
-    }
+    }*/
+
     /**
-     * permite eliminar un objeto 
+     * Baja de auto
      * @param array $param
      * @return boolean
      */
-    public function baja($param)
-    {
+    public function baja($param){
         $resp = false;
-        if ($this->seteadosCamposClaves($param)) {
-            $elObjtTabla = $this->cargarObjeto($param);
-            if ($elObjtTabla != null and $elObjtTabla->eliminar()) {
+        if ($this->seteadosCamposClaves($param)){
+            $elObjtAuto = $this->cargarObjetoConClave($param);
+            if ($elObjtAuto != null && $elObjtAuto->eliminar()){
                 $resp = true;
             }
         }
-
         return $resp;
     }
 
@@ -100,21 +124,19 @@ class ABMAuto{
      */
     public function buscar($param)
     {
-        // echo 'estoy buscando'; 
         $where = " true ";
         if ($param <> NULL) {
             if (isset($param['Patente']))
-                $where .= ' and Patente = ' ."'". $param['Patente']."'";
+                $where .= " AND Patente = '" . $param['Patente'] . "'";
 
             if (isset($param['Marca']))
-                $where .= ' and Marca =' . $param['Marca'] . "'";
+                $where .= " AND Marca = '" . $param['Marca'] . "'";
 
             if (isset($param['Modelo']))
-                $where .= ' and Modelo = ' . $param['Modelo'] . "'";
+                $where .= " AND Modelo = '" . $param['Modelo'] . "'";
             
             if (isset($param['DniDuenio']))
                 $where .= ' and DniDuenio = '."'" . $param['DniDuenio'] . "'";
-            //preguntar sobre el dniDuenio....
            
              
         }

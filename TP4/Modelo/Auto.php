@@ -12,7 +12,7 @@ class auto
         $this->patente = "";
         $this->marca = "";
         $this->modelo = "";
-        $this->objPersona;
+        $this->objPersona = null;
     }
     public function setear($patente, $marca, $modelo, $objPersona)
     {
@@ -77,7 +77,7 @@ class auto
     public function cargar(){
         $resp = false;
         $base=new BaseDatos();
-        $sql="SELECT * FROM auto WHERE patente = ".$this->getPatente();
+        $sql="SELECT * FROM auto WHERE Patente = ".$this->getPatente();
         if ($base->Iniciar()) {
             $res = $base->Ejecutar($sql);
             if($res>-1){
@@ -86,7 +86,7 @@ class auto
                     $persona = new persona();
                     $persona->setNroDni($row['DniDuenio']);
                     $persona->cargar();
-                    $this->setear($row[$persona],$row['Marca'],$row['Modelo'], $row['Patente']);
+                    $this->setear($row['Patente'],$row['Marca'],$row['Modelo'], $row[$persona]);
                 }
             }
         } else {

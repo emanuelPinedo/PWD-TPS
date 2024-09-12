@@ -10,9 +10,12 @@ echo "<h1>Resultado de la Búsqueda</h1>";
         echo "<tr><th>Patente</th><th>Marca</th><th>Modelo</th></tr>";
 
 // Verificar que se haya enviado la patente
-if (isset($datos['patente']) && !empty($datos['patente'])) {
+if (isset($datos['Patente']) && !empty($datos['Patente'])) {
+    //echo "entre al if";
     if($auto = $control->buscar($datos)){
-        if($auto > 0){
+        //echo "entre al if2";
+        if (!empty($auto)){
+            //echo "entre al if3";
             foreach($auto as $autito){
                 echo "<tr>";
                 echo "<td>" . htmlspecialchars($autito->getPatente()) . "</td>";
