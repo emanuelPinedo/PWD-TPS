@@ -15,6 +15,7 @@ $tp2ej4 = "../../../TP2/EJ4/Vista/ej4.php";
 $tp3ej1 = "#";
 $tp3ej2 = "../../EJ2/Vista/ej2.php";
 $tp3ej3 = "../../EJ3/Vista/ej3.php";
+$tp4 = "../../../TP4/Vista/ejercicio.php";
 include "../../../estructura/header.php" ?>
 
 <main class="text-light bg-dark d-flex align-items-center justify-content-center flex-column mt-5">

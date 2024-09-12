@@ -100,6 +100,10 @@
               } ?>
             </div>
           </li>
+          <?php if (isset($tp4)) {
+            echo '<a class="ml-5 btn btn-primary" href="' . $tp4 . '">TP4</a>';
+          } ?>
+
 
         </ul>
       </div>
