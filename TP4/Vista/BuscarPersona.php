@@ -17,23 +17,33 @@ $tp3ej2 = "../../TP3/EJ2/Vista/ej2.php";
 $tp3ej3 = "../../TP3/EJ3/Vista/ej3.php";
 include_once('../Vista/Estructura/header.php');
 ?>
-<h1>Consigna</h1>
-<p>
-  – Crear una página “BuscarPersona.html” que contenga un formulario que permita cargar un
-  numero de documento de una persona. Estos datos serán enviados a una página “accionBuscarPersona.php”
-  busque los datos de la persona cuyo documento sea el ingresado en el formulario los muestre en un nuevo
-  formulario; a su vez este nuevo formulario deberá permitir modificar los datos mostrados (excepto el nro de
-  documento) y estos serán enviados a otra página “ActualizarDatosPersona.php” que actualiza los datos de la
-  persona. Utilizar css y validaciones javaScript cuando crea conveniente. Recordar usar la capa de control
-  antes generada, no se puede acceder directamente a las clases del ORM.
-</p>
+<main class="pl-5 pr-5">
+  <div class="d-flex mt-2">
+    <h1 class="mr-3 mt-2 text-primary">Consigna</h1>
 
-<h1>Buscar Persona</h1>
-<form action="../Vista/Action/actionBuscarPersona.php" method="get" id="form1">
-  <label for="NroDni">Nro de Dni:</label>
-  <input type="text" id="NroDni" name="NroDni">
-  <input type="submit" value="Buscar">
-</form>
+    <p class="ml-3 mt-2">
+      – Crear una página “BuscarPersona.html” que contenga un formulario que permita cargar un
+      numero de documento de una persona. Estos datos serán enviados a una página “accionBuscarPersona.php”
+      busque los datos de la persona cuyo documento sea el ingresado en el formulario los muestre en un nuevo
+      formulario; a su vez este nuevo formulario deberá permitir modificar los datos mostrados (excepto el nro de
+      documento) y estos serán enviados a otra página “ActualizarDatosPersona.php” que actualiza los datos de la
+      persona. Utilizar css y validaciones javaScript cuando crea conveniente. Recordar usar la capa de control
+      antes generada, no se puede acceder directamente a las clases del ORM.
+    </p>
+
+  </div>
+
+  <h1 class="text-primary">Buscar Persona</h1>
+  <form class="w-100 d-flex flex-column align-items-center justify-content-center" action="../Vista/Action/actionBuscarPersona.php" method="get" id="form1">
+    <label for="NroDni">Nro de Dni:</label>
+    <div class="d-flex">
+      <input class="m-0 p-2 border-right-0 border-primary rounded-left" type="text" id="NroDni" name="NroDni">
+      <input class="m-0 p-2 text-white bg-primary border-primary rounded-right" type="submit" value="Buscar">
+
+    </div>
+  </form>
+
+</main>
 <?php
 include_once('../Vista/Estructura/footer.php');
 ?>
