@@ -27,45 +27,53 @@ $abmAuto = new ABMAuto();
 // Buscar todos los autos
 $autos = $abmAuto->buscar(null);
 ?>
+<main class="pl-5 pr-5">
+  <div class="d-flex">
+    <h1 class="mr-3 mt-2 text-primary">Consigna</h1>
+    <p class="ml-3 mt-2">
+      –Crear una pagina php “VerAutos.php”, en ella usando la capa de control correspondiente
+      mostrar todos los datos de los autos que se encuentran cargados, de los dueños mostrar nombre y apellido.
+      En caso de que no se encuentre ningún auto cargado en la base mostrar un mensaje indicando que no hay
+      autos cargados.
+    </p>
+  </div>
 
-<h1>Consigna</h1>
-<p>
-  –Crear una pagina php “VerAutos.php”, en ella usando la capa de control correspondiente
-  mostrar todos los datos de los autos que se encuentran cargados, de los dueños mostrar nombre y apellido.
-  En caso de que no se encuentre ningún auto cargado en la base mostrar un mensaje indicando que no hay
-  autos cargados.
-</p>
+  <table class="w-100 table table-hover text-center">
+    <h1 class="text-primary">Lista de Autos</h1>
+    <?php
 
-<table border="1">
-  <h1>Lista de Autos</h1>
-  <?php
+    if (count($autos) > 0) {
+      echo '
+      <thead class="thead-dark">
+        <tr>
+          <th>Patente</th>
+          <th>Marca</th>
+          <th>Modelo</th>
+          <th>Nombre del Dueño</th>
+          <th>Apellido</th>
+          <th>DNI</th>
+        </tr>
+      </thead>';
+      foreach ($autos as $abmAuto) {
+        $objPerso = $abmAuto->getObjPersona();
+        echo '<tbody>';
+        echo '<tr><td style="width:10px;">' . $abmAuto->getPatente() . '</td>';
+        echo '<td style="width:10px;">' . $abmAuto->getMarca() . '</td>';
+        echo '<td style="width:10px;">' . $abmAuto->getModelo() . '</td>';
+        echo '<td style="width:10px;">' . $objPerso->getNombre() . '</td>';
+        echo '<td style="width:10px;">' . $objPerso->getApellido() . '</td>';
+        echo '<td style="width:10px;">' . $objPerso->getNroDni() . '</td>';
+        echo '</tr>';
+        echo '</tbody>';
+      }
+    } else {
 
-  if (count($autos) > 0) {
-    echo '<tr>
-  <th>Patente</th>
-  <th>Marca</th>
-  <th>Modelo</th>
-  <th>Nombre del Dueño</th>
-  <th>Apellido</th>
-  <th>DNI</th>
-</tr>';
-    foreach ($autos as $abmAuto) {
-      $objPerso = $abmAuto->getObjPersona();
-      echo '<tr><td style="width:10px;">' . $abmAuto->getPatente() . '</td>';
-      echo '<td style="width:10px;">' . $abmAuto->getMarca() . '</td>';
-      echo '<td style="width:10px;">' . $abmAuto->getModelo() . '</td>';
-      echo '<td style="width:10px;">' . $objPerso->getNombre() . '</td>';
-      echo '<td style="width:10px;">' . $objPerso->getApellido() . '</td>';
-      echo '<td style="width:10px;">' . $objPerso->getNroDni() . '</td>';
-      echo '</tr>';
+      echo '<h3> No se encontraron registros </h3>';
     }
-  } else {
 
-    echo '<h3> No se encontraron registros </h3>';
-  }
-
-  ?>
-</table>
+    ?>
+  </table>
+</main>
 
 <?php
 include_once('../Vista/Estructura/footer.php');
