@@ -1,19 +1,24 @@
-<!DOCTYPE html>
-<html lang="es">
+<?php
+$title = "Ejercicio 4";
+$jsFile = "./js/validacion.js";
+$jsFileFooter = "./js/validacion.js";
+$cssFile = "./css/styles.css";
+$tp1ej1 = "../../../TP1/EJ1/Vista/ej1.php";
+$tp1ej2 = "../../../TP1/EJ2/Vista/ej2.php";
+$tp1ej3 = "../../../TP1/EJ3/Vista/ej3.php";
+$tp1ej4 = "../../../TP1/EJ4/Vista/ej4.php";
+$tp1ej5 = "../../../TP1/EJ5/Vista/ej5.php";
+$tp1ej6 = "../../../TP1/EJ6/Vista/ej6.php";
+$tp1ej7 = "../../../TP1/EJ7/Vista/ej7.php";
+$tp1ej8 = "../../../TP1/EJ8/Vista/ej8.php";
+$tp2ej3 = "#";
+$tp2ej4 = "../../EJ4/Vista/ej4.php";
+$tp3ej1 = "../../../TP3/EJ1/Vista/ej1.php";
+$tp3ej2 = "../../../TP3/EJ2/Vista/ej2.php";
+$tp3ej3 = "../../../TP3/EJ3/Vista/ej3.php";
+include "../../../estructura/header.php" ?>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Formulario</title>
-
-  <!-- CSS de Bootstrap -->
-  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-  <!-- CSS personalizado (opcional) -->
-  <link rel="stylesheet" href="./css/styles.css">
-
-</head>
-
-<body class="bg-dark">
+<main class="bg-dark">
   <div class="border border-secondary shadow-lg rounded login-container p-5 d-flex justify-content-center flex-column align-items-center bg-light">
     <h2 class="mb-4">Member Login</h2>
     <form id="loginForm" action="./action/action.php" method="POST">
@@ -27,12 +32,6 @@
       <input type="submit" class="bg-success text-light btn btn-login w-100" value="Login" />
     </form>
   </div>
-  <!-- jQuery -->
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <!-- Validación con jQuery -->
-  <script src="./js/validacion.js"></script>
-  <!-- JavaScript de Bootstrap -->
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
-</body>
 
-</html>
+</main>
+<?php include "../../../estructura/footer.php" ?>
