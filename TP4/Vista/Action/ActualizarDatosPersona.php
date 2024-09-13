@@ -1,6 +1,6 @@
 <?php
 include_once ('../../config.php');
-
+include_once('../Estructura/header.php');
 $datos = data_submitted();
 
 $objABMPersona = new ABMPersona();
@@ -24,3 +24,4 @@ if($objABMPersona->modificacion($param)){
 <a href="http://localhost/PWD-TPS/TP4/Vista/Action/actionBuscarPersona.php?NroDni=45798194">Volver a la Actualizaci&oacute;n</a>
 <br>
 <a href="http://localhost/PWD-TPS/TP4/Vista/BuscarPersona.php#">Volver al Ejercicio</a>
+<?php include_once("../Estructura/footer.php"); ?>

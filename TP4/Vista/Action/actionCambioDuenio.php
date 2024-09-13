@@ -1,6 +1,6 @@
 <?php
 include_once('../../config.php');
-
+include_once('../Estructura/header.php');
 $datos = data_submitted();
 $resp = false;
 
@@ -44,3 +44,4 @@ if (count($autoArray) > 0) {
 }
 ?>
 <a href="http://localhost/PWD-TPS/TP4/Vista/CambioDuenio.php#">Volver</a>
+<?php include_once("../Estructura/footer.php"); ?>

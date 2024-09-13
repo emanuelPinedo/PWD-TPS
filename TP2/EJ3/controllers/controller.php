@@ -8,7 +8,8 @@ class Login
     $cuentasDePrueba = [
       ["usuario" => "fedeu18", "clave" => "federico1234"],
       ["usuario" => "emanuel1", "clave" => "ema12345"],
-      ["usuario" => "joaquin2", "clave" => "joaquin123"],
+      ["usuario" => "123", "clave" => "joaquin123"],
+      ["usuario" => "123" , "clave" => "123123123"],
     ];
     $usuario = $metodo["usuario"];
     $clave = $metodo["clave"];

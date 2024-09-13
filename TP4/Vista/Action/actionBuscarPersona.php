@@ -1,6 +1,6 @@
 <?php
 include_once ('../../config.php');
-
+include_once('../Estructura/header.php');
 $datos = data_submitted();
 $dni = $datos['NroDni'];
 
@@ -48,3 +48,5 @@ if (count($persona) > 0) {
     echo "<p>No hay una persona con este DNI, o no ha sido encontrada.</p>";
 }
 ?>
+<a href="http://localhost/PWD-TPS/TP4/Vista/buscarAutos.php#">Volver</a>
+<?php include_once("../Estructura/footer.php"); ?>

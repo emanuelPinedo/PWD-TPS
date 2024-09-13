@@ -1,6 +1,6 @@
 <?php
 include_once "../../config.php";
-
+include_once('../Estructura/header.php');
 $dni = isset($_GET['dni']) ? $_GET['dni'] : '';
 
 if (empty($dni)) {
@@ -54,3 +54,4 @@ if ($persona) {
 }
 ?>
 <a href="http://localhost/PWD-TPS/TP4/Vista/listaPersonas.php">Volver</a>
+<?php include_once("../Estructura/footer.php"); ?>

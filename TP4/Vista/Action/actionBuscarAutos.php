@@ -1,6 +1,6 @@
 <?php
 include_once "../../config.php";
-
+include_once('../Estructura/header.php');
 $datos = data_submitted();
 $resp = false;
 $control = new ABMAuto();
@@ -30,5 +30,8 @@ if (isset($datos['Patente']) && !empty($datos['Patente'])) {
     echo "<tr><td colspan='3'>Por favor, ingrese una patente.</td></tr>";
 }
 echo "</table>";
+
 ?>
 <a href="http://localhost/PWD-TPS/TP4/Vista/buscarAutos.php#">Volver</a>
+
+<?php include_once("../Estructura/footer.php"); ?>

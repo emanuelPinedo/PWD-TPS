@@ -1,5 +1,6 @@
 <?php
 include_once ('../../config.php');
+include_once('../Estructura/header.php');
 
 $newPerso = data_submitted();
 echo '<pre>';
@@ -26,3 +27,4 @@ if($validarPerso){
     <a href="http://localhost/PWD-TPS/TP4/Vista/NuevaPersona.php#">Volver</a>
 </body>
 </html>
+<?php include_once("../Estructura/footer.php"); ?>

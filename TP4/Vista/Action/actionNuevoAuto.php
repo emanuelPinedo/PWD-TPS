@@ -1,6 +1,6 @@
 <?php
 include_once ('../../config.php');
-
+include_once('../Estructura/header.php');
 $newAuto = data_submitted();
 $abmPerso = new ABMPersona();
 $abmAuto = new ABMAuto();
@@ -42,3 +42,4 @@ if(empty($persoExiste)){
     <a href="http://localhost/PWD-TPS/TP4/Vista/NuevoAuto.php#">Volver</a>
 </body>
 </html>
+<?php include_once("../Estructura/footer.php"); ?>
