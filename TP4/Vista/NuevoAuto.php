@@ -1,6 +1,6 @@
 <?php
 $title = "Nuevo Auto ";
-// $jsFile = "";
+$jsFileFooter = "./Assets/libreria.js";
 // $cssFile = "";
 $tp1ej1 = "../../TP1/EJ1/Vista/ej1.php";
 $tp1ej2 = "../../TP1/EJ2/Vista/ej2.php";
@@ -34,22 +34,26 @@ include_once('../Vista/Estructura/header.php');
   </div>
   <div class="d-flex flex-column align-items-center justify-content-center mb-5">
     <h1>Registrar Nuevo Auto</h1>
-    <form class="w-25 bg-light shadow p-3" action="../Vista/Action/actionNuevoAuto.php" method="post" onsubmit="return validarFormulario()">
+    <form class="w-25 bg-light shadow p-3 needs-validation" novalidate action="../Vista/Action/actionNuevoAuto.php" method="post" onsubmit="return validarFormulario()">
       <div class="w-100 d-flex flex-column">
-        <label for="patente">Patente:</label>
-        <input type="text" id="patente" name="Patente">
+        <label for="patente" class="form-label">Patente:</label>
+        <input type="text" class="form-control" id="patente" name="Patente" required>
+        <div class="invalid-feedback">Este campo es necesario</div>
       </div>
       <div class="w-100 d-flex flex-column">
-        <label for="marca">Marca:</label>
-        <input type="text" id="marca" name="Marca">
+        <label for="marca" class="form-label">Marca:</label>
+        <input type="text" class="form-control" id="marca" name="Marca" required>
+        <div class="invalid-feedback">Este campo es necesario</div>
       </div>
       <div class="w-100 d-flex flex-column">
-        <label for="modelo">Modelo:</label>
-        <input type="text" id="modelo" name="Modelo">
+        <label for="modelo" class="form-label">Modelo:</label>
+        <input type="text" class="form-control" id="modelo" name="Modelo" required>
+        <div class="invalid-feedback">Este campo es necesario</div>
       </div>
       <div class="w-100 d-flex flex-column">
-        <label for="dni">DNI del Dueño:</label>
-        <input type="text" id="dni" name="DniDuenio">
+        <label for="dni" class="form-label">DNI del Dueño:</label>
+        <input type="text" class="form-control" id="dni" name="DniDuenio" required>
+        <div class="invalid-feedback">Este campo es necesario</div>
       </div>
       <input class="w-100 btn btn-primary mt-3" type="submit" value="Registrar">
     </form>

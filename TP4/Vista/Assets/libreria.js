@@ -1,78 +1,23 @@
-$(document).ready(function(){
-    $("#form4").validate({
-    
-        rules : {
-            titulo : {
-                required : true
-            },
-            actores : {
-                required :true
-            },
-            director : {
-                required :true
-            },
-            guion : {
-                required : true
-            },
-            produccion : {
-                required : true
-            },
-            anio : {
-                required :true
-            },
-            nacionalidad : {
-                required :true
-            },
-            genero : {
-                required :true
-            },
-            duracion : {
-                required :true
-            },
-            restricciones : {
-                required :true
-            },
-            sinopsis : {
-                required :true
-            }
-        },
-        messages : {
-            titulo : {
-                required : "Este campo es obligatorio"
-            },
-            actores : {
-                required : "Este campo es obligatorio"
-            },
-            director : {
-                required : "Este campo es obligatorio"
-            },
-            guion : {
-                required : "Este campo es obligatorio"
-            },
-            produccion : {
-                required : "Este campo es obligatorio"
-            },
-            anio : {
-                required : "Este campo es obligatorio"
-            },
-            nacionalidad : {
-                required : "Este campo es obligatorio"
-            },
-            genero : {
-                required : "Este campo es obligatorio"
-            },
-            duracion : {
-                required : "Este campo es obligatorio"
-            },
-            restricciones : {
-                required : "Este campo es obligatorio"
-            },
-            sinopsis : {
-                required : "Este campo es obligatorio"
-            }
-        },
-        submitHandler : function(form){
-            form.submit();
+// Example starter JavaScript for disabling form submissions if there are invalid fields
+(function () {
+  "use strict";
+
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  var forms = document.querySelectorAll(".needs-validation");
+
+  // Loop over them and prevent submission
+  Array.prototype.slice.call(forms).forEach(function (form) {
+    form.addEventListener(
+      "submit",
+      function (event) {
+        if (!form.checkValidity()) {
+          event.preventDefault();
+          event.stopPropagation();
         }
-    });
-    });
+
+        form.classList.add("was-validated");
+      },
+      false
+    );
+  });
+})();
