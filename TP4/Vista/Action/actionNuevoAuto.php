@@ -5,7 +5,7 @@ $newAuto = data_submitted();
 $abmPerso = new ABMPersona();
 $abmAuto = new ABMAuto();
 
-// Verifico que el dueño esté registrado
+//verifico que el dueño este registrado
 $personaDni = array('NroDni' => $newAuto['DniDuenio']);
 $persoExiste = $abmPerso->buscar($personaDni);
 
@@ -14,18 +14,18 @@ print_r($newAuto);
 echo '</pre>';
 
 if(empty($persoExiste)){
-    // no existe el wacho ingresado, no esta registrado pa
-    $msj = "El DNI del dueño no esta registrado. <a href='http://localhost/PWD-TPS/TP4/Vista/NuevaPersona.php'>Registrar nueva persona</a>";
+    //no existe la persona ingresada
+    $msj = "El DNI del dueño no está registrado. <a href='http://localhost/PWD-TPS/TP4/Vista/NuevaPersona.php'>Registra la nueva persona pa</a>";
 } else {
-    // si la persona existe, entonces esta registrada nasheeee
     $persona = $persoExiste[0];
-    $newAuto['DniDuenio'] = $persona;
+
+    $newAuto['DniDuenio'] = $persona['NroDni'];
     
     $res = $abmAuto->alta($newAuto);
     if($res){
-        $msj = "Auto registrado correctamente, tipo crack q sos";
+        $msj = "Auto registrado correctamente.";
     } else {
-        $msj = "El auto no se puede registrar. Pedilo (ELLA ME LLAMA ME LLAMA)";
+        $msj = "El auto no se puede registrar.";
     }
 }
 ?>

@@ -13,7 +13,7 @@ class ABMPersona
     if (isset($param['NroDni'])) {
       $obj = new Persona();
       $obj->setNroDni($param['NroDni']);
-      $obj->cargar(); // Busca la persona con el dni proporcionado
+      $obj->cargar();
     }
     return $obj;
   }
@@ -127,7 +127,6 @@ class ABMPersona
     }
     $arreglo = Persona::listar($where);
 
-    // Convertir los objetos Persona a arrays
     $resultado = [];
     foreach ($arreglo as $objPersona) {
         $resultado[] = [

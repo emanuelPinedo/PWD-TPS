@@ -13,7 +13,7 @@ class ABMAuto
     if (isset($param['Patente'])) {
       $obj = new Auto();
       $obj->setPatente($param['Patente']);
-      $obj->cargar(); // Busca el auto con la patente proporcionada
+      $obj->cargar();
     }
     return $obj;
   }
@@ -30,8 +30,12 @@ class ABMAuto
         array_key_exists('Patente', $param) && array_key_exists('Marca', $param) &&
         array_key_exists('Modelo', $param) && array_key_exists('DniDuenio', $param)
     ) {
+        $objPersona = new Persona();
+        $objPersona->setNroDni($param['DniDuenio']);
+        $objPersona->cargar();
+        
         $obj = new Auto();
-        $obj->setear($param['Patente'], $param['Marca'], $param['Modelo'], $param['DniDuenio']);
+        $obj->setear($param['Patente'], $param['Marca'], $param['Modelo'], $objPersona);
     }
     return $obj;
   }
@@ -113,15 +117,26 @@ class ABMAuto
    */
   public function modificacion($param)
   {
-    $resp = false;
-    if ($this->seteadosCamposClaves($param)) {
-        $elObjtAuto = $this->cargarObjeto($param);
-        if ($elObjtAuto != null && $elObjtAuto->modificar()) {
-            $resp = true;
-        }
-    }
-    return $resp;
-}
+      $resp = false;
+      
+      if ($this->seteadosCamposClaves($param)) {
+          $elObjtAuto = $this->cargarObjetoConClave($param);
+          
+          if ($elObjtAuto != null) {
+              $persona = new Persona();
+              $persona->setNroDni($param['DniDuenio']);
+              $persona->cargar();
+
+              $elObjtAuto->setObjPersona($persona);
+
+              if ($elObjtAuto->modificar()) {
+                  $resp = true;
+              }
+          }
+      }
+  
+      return $resp;
+  }
 
   /**
    * permite buscar un objeto
@@ -146,10 +161,10 @@ class ABMAuto
     }
 
     $arreglo = Auto::listar($where);
-    // Convertir los objetos a arrays
+
     $resultado = [];
     foreach ($arreglo as $objAuto) {
-        $persona = $objAuto->getObjPersona(); // Asumimos que esto devuelve un objeto Persona
+        $persona = $objAuto->getObjPersona();
         
         $resultado[] = [
             'Patente' => $objAuto->getPatente(),
@@ -164,6 +179,6 @@ class ABMAuto
         ];
     }
 
-    return $resultado; // Retorna el arreglo en lugar de los objetos
+    return $resultado;
   }
 }

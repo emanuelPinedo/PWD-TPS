@@ -102,15 +102,15 @@ class auto
         $base = new BaseDatos();
         $objPersona = $this->getObjPersona(); // Obtener el objeto Persona
         
-        // Verificar si $objPersona es un objeto antes de usarlo
+        //vrificar si $objPersona es un objeto antes de usarlo
         if (is_object($objPersona) && method_exists($objPersona, 'getNroDni')) {
             $dni = $objPersona->getNroDni();
         } else {
             $this->setMensajeoperacion("Error: Persona no válida.");
-            return false;
         }
     
-        $sql = "INSERT INTO auto(Patente,Marca,Modelo,DniDuenio) VALUES('".$this->getPatente()."','".$this->getMarca() . "','" . $this->getModelo()."','". $dni. "');";
+        $sql = "INSERT INTO auto(Patente,Marca,Modelo,DniDuenio) 
+        VALUES('".$this->getPatente()."','".$this->getMarca() . "','" . $this->getModelo()."','". $dni. "');";
         
         if ($base->Iniciar()) {
             if ($elid = $base->Ejecutar($sql)) {
@@ -135,10 +135,10 @@ class auto
         $dni = $objPersona->getNroDni();
     } else {
         $this->setMensajeoperacion("Error: Persona no válida.");
-        return false;
     }
 
-    $sql = "UPDATE auto SET Marca='" . $this->getMarca() . "', Modelo='" . $this->getModelo() . "', DniDuenio='" . $dni . "' WHERE Patente='" . $this->getPatente() . "'";
+    $sql = "UPDATE auto SET Marca='" . $this->getMarca() . "', Modelo='" . $this->getModelo() . "', DniDuenio='" . $dni . "' 
+    WHERE Patente='" . $this->getPatente() . "'";
 
     if ($base->Iniciar()) {
         if ($base->Ejecutar($sql)) {
@@ -159,7 +159,7 @@ class auto
         $sql="DELETE FROM auto WHERE Patente=".$this->getPatente();
         if ($base->Iniciar()) {
             if ($base->Ejecutar($sql)) {
-                return true;
+                $resp = true;
             } else {
                 $this->setMensajeoperacion("Auto->eliminar: ".$base->getError());
             }
@@ -173,7 +173,7 @@ class auto
         $arreglo = array();
         $base = new BaseDatos();
         $sql = "SELECT * FROM auto ";
-        if ($parametro!="") {
+        if ($parametro != "") {
             $sql.='WHERE '.$parametro;
         }
 
