@@ -4,7 +4,7 @@ include_once('../Estructura/header.php');
 
 $newPerso = data_submitted();
 echo '<pre>';
-print_r($newPerso);
+
 echo '</pre>';
 $abmPerso = new ABMPersona;
 $validarPerso = $abmPerso->alta($newPerso);

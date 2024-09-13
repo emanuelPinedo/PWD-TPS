@@ -10,7 +10,7 @@ $personaDni = array('NroDni' => $newAuto['DniDuenio']);
 $persoExiste = $abmPerso->buscar($personaDni);
 
 echo '<pre>';
-print_r($newAuto);
+
 echo '</pre>';
 
 if(empty($persoExiste)){

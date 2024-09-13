@@ -14,7 +14,7 @@ $param = [
     'Telefono' => $datos['Telefono']
 ];
 echo "<h1>Datos de la persona Actualizados</h1>";
-print_r($param);
+
 if($objABMPersona->modificacion($param)){
     echo "<p>Los datos de la persona con el DNI {$datos['NroDni']} han sido actualizados!!!! NASHE GOD</p>";
 } else {
