@@ -2,7 +2,12 @@
   <h5>Desarrollado por: -Uñates Federico -Pinedo Emanuel -Vargas Joaquin</h5>
   <h6>Universidad Nacional Del Comahue</h6>
 </footer>
+<?php
+if (isset($jsFileFooter)) {
 
+  echo '<script src="' . $jsFileFooter . '"></script>';
+}
+?>
 </body>
 
 </html>
