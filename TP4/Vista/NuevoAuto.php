@@ -1,6 +1,6 @@
 <?php
 $title = "Nuevo Auto ";
-$jsFileFooter = "./Assets/libreria.js";
+$jsFileFooter = "./Assets/validacion.js";
 // $cssFile = "";
 $tp1ej1 = "../../TP1/EJ1/Vista/ej1.php";
 $tp1ej2 = "../../TP1/EJ2/Vista/ej2.php";
@@ -34,26 +34,31 @@ include_once('../Vista/Estructura/header.php');
   </div>
   <div class="d-flex flex-column align-items-center justify-content-center mb-5">
     <h1>Registrar Nuevo Auto</h1>
-    <form class="w-25 bg-light shadow p-3 needs-validation" novalidate action="../Vista/Action/actionNuevoAuto.php" method="post" onsubmit="return validarFormulario()">
+    <form
+      class="w-25 bg-light shadow p-3 needs-validation"
+      novalidate
+      action="../Vista/Action/actionNuevoAuto.php"
+      method="post"
+      onsubmit="return validarAuto()">
       <div class="w-100 d-flex flex-column">
         <label for="patente" class="form-label">Patente:</label>
-        <input type="text" class="form-control" id="patente" name="Patente" required>
-        <div class="invalid-feedback">Este campo es necesario</div>
+        <input type="text" class="form-control" id="patente" name="Patente" placeholder="AAA 000" required>
+        <div class="invalid-feedback">Introduzca una patente válida</div>
       </div>
       <div class="w-100 d-flex flex-column">
         <label for="marca" class="form-label">Marca:</label>
         <input type="text" class="form-control" id="marca" name="Marca" required>
-        <div class="invalid-feedback">Este campo es necesario</div>
+        <div class="invalid-feedback">Introduzca una marca válida</div>
       </div>
       <div class="w-100 d-flex flex-column">
         <label for="modelo" class="form-label">Modelo:</label>
         <input type="text" class="form-control" id="modelo" name="Modelo" required>
-        <div class="invalid-feedback">Este campo es necesario</div>
+        <div class="invalid-feedback">Introduzca un modelo válido</div>
       </div>
       <div class="w-100 d-flex flex-column">
         <label for="dni" class="form-label">DNI del Dueño:</label>
-        <input type="text" class="form-control" id="dni" name="DniDuenio" required>
-        <div class="invalid-feedback">Este campo es necesario</div>
+        <input type="text" class="form-control" id="dni" name="DniDuenio" placeholder="00000000" required>
+        <div class="invalid-feedback">Introduzca un DNI válido</div>
       </div>
       <input class="w-100 btn btn-primary mt-3" type="submit" value="Registrar">
     </form>

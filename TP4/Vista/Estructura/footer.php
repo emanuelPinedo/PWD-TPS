@@ -4,9 +4,9 @@
 </footer>
 <?php
 if (isset($jsFileFooter)) {
-
   echo '<script src="' . $jsFileFooter . '"></script>';
 }
+
 ?>
 </body>
 
