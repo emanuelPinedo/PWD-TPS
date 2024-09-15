@@ -9,23 +9,29 @@ $abmAuto = new ABMAuto();
 $personaDni = array('NroDni' => $newAuto['DniDuenio']);
 $persoExiste = $abmPerso->buscar($personaDni);
 
-echo '<pre>';
-
-echo '</pre>';
-
-if(empty($persoExiste)){
-    //no existe la persona ingresada
-    $msj = "El DNI del dueño no está registrado. <a href='http://localhost/PWD-TPS/TP4/Vista/NuevaPersona.php'>Registra la nueva persona pa</a>";
+// Verifica si ya hay una persona con ese DNI
+if (empty($persoExiste)) {
+    $msj = "El DNI del dueño no está registrado. <a href='http://localhost/PWD-TPS/TP4/Vista/NuevaPersona.php'>Registra la nueva persona</a>";
 } else {
-    $persona = $persoExiste[0];
+    $persona = $persoExiste[0]; // La persona existe, continuamos
 
-    $newAuto['DniDuenio'] = $persona['NroDni'];
-    
-    $res = $abmAuto->alta($newAuto);
-    if($res){
-        $msj = "Auto registrado correctamente.";
+    // Verificamos si ya existe un auto con la misma patente
+    $autoPatente = array('Patente' => $newAuto['Patente']);
+    $autoExiste = $abmAuto->buscar($autoPatente); 
+
+    if (!empty($autoExiste)) {
+        // Ya existe un auto con la misma patente
+        $msj = "Ya hay un auto registrado con la misma patente.";
     } else {
-        $msj = "El auto no se puede registrar.";
+        // No existe el auto con esa patente, procedemos a registrarlo
+        $newAuto['DniDuenio'] = $persona['NroDni'];
+
+        $res = $abmAuto->alta($newAuto);
+        if ($res) {
+            $msj = "Auto registrado correctamente.";
+        } else {
+            $msj = "El auto no se puede registrar.";
+        }
     }
 }
 ?>
