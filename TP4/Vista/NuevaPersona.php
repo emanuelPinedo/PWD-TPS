@@ -1,6 +1,6 @@
 <?php
 $title = "Nueva Persona";
-// $jsFile = "";
+$jsFileFooter = "./Assets/validacion.js";
 // $cssFile = "";
 $tp1ej1 = "../../TP1/EJ1/Vista/ej1.php";
 $tp1ej2 = "../../TP1/EJ2/Vista/ej2.php";
@@ -34,31 +34,41 @@ include_once('../Vista/Estructura/header.php');
   <div class="d-flex flex-column align-items-center justify-content-center mb-5">
 
     <h1 class="text-primary">Registrar Nueva Persona</h1>
-    <form class="w-25 bg-light shadow p-3" action="../Vista/Action/actionNuevaPersona.php" method="post">
-      <div id="error" class="error"></div>
+    <form
+      class="w-25 bg-light shadow p-3"
+      novalidate
+      action="../Vista/Action/actionNuevaPersona.php"
+      method="post"
+      onsubmit="return validarPersona()">
       <div class="w-100 d-flex flex-column">
-        <label for="NroDni">DNI:</label>
-        <input type="number" id="NroDni" name="NroDni">
+        <label for="NroDni" class="form-label">DNI:</label>
+        <input type="number" class="form-control" id="NroDni" name="NroDni" required>
+        <div class="invalid-feedback">Introduzca un DNI válido</div>
       </div>
       <div class="w-100 d-flex flex-column">
-        <label for="Apellido">Apellido:</label>
-        <input type="text" id="Apellido" name="Apellido">
+        <label for="Apellido" class="form-label">Apellido:</label>
+        <input type="text" class="form-control" id="Apellido" name="Apellido" required>
+        <div class="invalid-feedback">Introduzca un Apellido válido</div>
       </div>
       <div class="w-100 d-flex flex-column">
-        <label for="Nombre">Nombre:</label>
-        <input type="text" id="Nombre" name="Nombre">
+        <label for="Nombre" class="form-label">Nombre:</label>
+        <input type="text" class="form-control" id="Nombre" name="Nombre" required>
+        <div class="invalid-feedback">Introduzca un Nombre válido</div>
       </div>
       <div class="w-100 d-flex flex-column">
-        <label for="fechaNac">Fecha de Nacimiento:</label>
-        <input type="date" id="fechaNac" name="fechaNac">
+        <label for="fechaNac" class="form-label">Fecha de Nacimiento:</label>
+        <input type="date" class="form-control" id="fechaNac" name="fechaNac" required>
+        <div class="invalid-feedback">Introduzca una fecha válida</div>
       </div>
       <div class="w-100 d-flex flex-column">
-        <label for="Telefono">Teléfono:</label>
-        <input type="tel" id="Telefono" name="Telefono">
+        <label for="Telefono" class="form-label">Teléfono:</label>
+        <input type="tel" class="form-control" id="Telefono" name="Telefono" required>
+        <div class="invalid-feedback">Introduzca un Nro de teléfono válido</div>
       </div>
       <div class="w-100 d-flex flex-column">
-        <label for="Domicilio">Domicilio:</label>
-        <input type="text" id="Domicilio" name="Domicilio">
+        <label for="Domicilio" class="form-label">Domicilio:</label>
+        <input type="text" class="form-control" id="Domicilio" name="Domicilio" required>
+        <div class="invalid-feedback">Introduzca un Domicilio válido</div>
       </div>
 
       <input class="w-100 btn btn-primary mt-3" type="submit" value="Registrar">
