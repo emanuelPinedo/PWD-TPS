@@ -13,7 +13,7 @@ function validarAuto() {
   modelo.removeClass("is-invalid is-valid");
   dni.removeClass("is-invalid is-valid");
 
-  //Que la pantente reciba strings de la siguiente forma: "AAA 000"
+  //Que la pantente reciba strings de la siguiente forma: "AAA 000" (tres letras y tres números)
   let regexPatente = /^[A-Za-z]{3} \d{3}$/;
   if (!regexPatente.test(patente.val())) {
     patente.addClass("is-invalid");
@@ -122,6 +122,27 @@ function validarPersona() {
     valido = false;
   } else {
     domicilio.addClass("is-valid");
+  }
+
+  return valido;
+}
+
+// Validación de búsqueda de auto
+function validarBusquedaAuto() {
+  let valido = true;
+
+  let patente = $("#patente");
+
+  // Reiniciar clases
+  patente.removeClass("is-invalid is-valid");
+
+  // Validación de patente: "AAA 000" (tres letras y tres números)
+  let regexPatente = /^[A-Za-z]{3} \d{3}$/;
+  if (!regexPatente.test(patente.val())) {
+    patente.addClass("is-invalid");
+    valido = false;
+  } else {
+    patente.addClass("is-valid");
   }
 
   return valido;

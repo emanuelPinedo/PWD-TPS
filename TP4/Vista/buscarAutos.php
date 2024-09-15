@@ -1,6 +1,6 @@
 <?php
 $title = "Buscar Auto";
-// $jsFile = "";
+$jsFileFooter = "./Assets/validacion.js";
 // $cssFile = "";
 $tp1ej1 = "../../TP1/EJ1/Vista/ej1.php";
 $tp1ej2 = "../../TP1/EJ2/Vista/ej2.php";
@@ -33,12 +33,19 @@ include_once('../Vista/Estructura/header.php');
   </div>
 
   <h1 class="text-primary">Buscar Auto</h1>
-  <form class="w-100 d-flex flex-column align-items-center justify-content-center" action="../Vista/Action/actionBuscarAutos.php" method="get" id="form1">
-    <label for="patente">Número de Patente:</label>
-    <div class="d-flex">
-      <input class="m-0 p-2 border-right-0 border-primary rounded-left" type="text" id="patente" name="Patente">
-      <input class="m-0 p-2 text-white bg-primary border-primary rounded-right" type="submit" value="Buscar">
+  <form
+    class="w-100 d-flex flex-column align-items-center justify-content-center"
+    action="../Vista/Action/actionBuscarAutos.php"
+    method="get"
+    id="form1"
+    novalidate
+    onsubmit="return validarBusquedaAuto()">
+    <div>
+      <label for="patente" class="form-label">Número de Patente:</label>
+      <input class="form-control" type="text" id="patente" name="Patente" required>
+      <div class="invalid-feedback">Introduzca una patente válida</div>
     </div>
+    <input class="mt-2 btn btn-primary" type="submit" value="Buscar">
   </form>
 </main>
 <?php
