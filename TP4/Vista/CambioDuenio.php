@@ -1,6 +1,6 @@
 <?php
 $title = "Cambio de Dueño";
-// $jsFile = "";
+$jsFileFooter = "./Assets/validacion.js";
 // $cssFile = "";
 $tp1ej1 = "../../TP1/EJ1/Vista/ej1.php";
 $tp1ej2 = "../../TP1/EJ2/Vista/ej2.php";
@@ -35,14 +35,23 @@ include_once('../Vista/Estructura/header.php');
   <div class="d-flex flex-column align-items-center justify-content-center">
 
     <h1 class="text-primary">Cambiar el Dueño del Auto (mal ahí)</h1>
-    <form class="pl-5 pr-5 pt-4 pb-4 w-50 bg-light d-flex rounded flex-column align-items-center shadow" action="../Vista/Action/actionCambioDuenio.php" method="POST">
-      <div class="w-100 d-flex justify-content-between">
-        <label for="patente">Patente del auto:</label>
-        <input type="text" id="patente" name="Patente" required>
+    <form
+      class="pl-5 pr-5 pt-4 pb-4 w-50 bg-light d-flex rounded flex-column align-items-center shadow"
+      action="../Vista/Action/actionCambioDuenio.php"
+      method="POST"
+      novalidate
+      onsubmit="return validarCambio()">
+      <div>
+        <label for="patente" class="form-label">Patente del auto:</label>
+        <input type="text" class="form-control" id="patente" name="Patente" required>
+        <div class="invalid-feedback">Introduzca una patente válida</div>
+
       </div>
-      <div class="mt-3 w-100 d-flex justify-content-between">
-        <label for="dni">DNI del nuevo dueño:</label>
-        <input type="text" id="dni" name="NroDni" required>
+      <div>
+        <label for="dni" class="form-label">DNI del nuevo dueño:</label>
+        <input type="text" class="form-control" id="dni" name="NroDni" required>
+        <div class="invalid-feedback">Introduzca un DNI válido</div>
+
       </div>
       <input class="mt-5 btn btn-primary" type="submit" value="Cambiar Dueño">
     </form>

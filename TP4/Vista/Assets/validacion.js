@@ -168,3 +168,33 @@ function validarBusquedaPersona() {
 
   return valido;
 }
+
+// Validación de cambio de dueño
+function validarCambio() {
+  let valido = true;
+
+  let patente = $("#patente");
+  let dni = $("#dni");
+
+  // Reiniciar clases
+  patente.removeClass("is-invalid is-valid");
+  dni.removeClass("is-invalid is-valid");
+
+  let regexPatente = /^[A-Za-z]{3} \d{3}$/;
+  if (!regexPatente.test(patente.val())) {
+    patente.addClass("is-invalid");
+    valido = false;
+  } else {
+    patente.addClass("is-valid");
+  }
+
+  let regexDni = /^\d{8}$/;
+  if (!regexDni.test(dni.val())) {
+    dni.addClass("is-invalid");
+    valido = false;
+  } else {
+    dni.addClass("is-valid");
+  }
+
+  return valido;
+}
