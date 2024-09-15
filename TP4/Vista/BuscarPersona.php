@@ -1,6 +1,6 @@
 <?php
 $title = "Buscar Persona";
-// $jsFile = "";
+$jsFileFooter = "./Assets/validacion.js";
 // $cssFile = "";
 $tp1ej1 = "../../TP1/EJ1/Vista/ej1.php";
 $tp1ej2 = "../../TP1/EJ2/Vista/ej2.php";
@@ -34,13 +34,20 @@ include_once('../Vista/Estructura/header.php');
   </div>
 
   <h1 class="text-primary">Buscar Persona</h1>
-  <form class="w-100 d-flex flex-column align-items-center justify-content-center" action="../Vista/Action/actionBuscarPersona.php" method="get" id="form1">
-    <label for="NroDni">Nro de Dni:</label>
-    <div class="d-flex">
-      <input class="m-0 p-2 border-right-0 border-primary rounded-left" type="text" id="NroDni" name="NroDni">
-      <input class="m-0 p-2 text-white bg-primary border-primary rounded-right" type="submit" value="Buscar">
+  <form
+    class="w-100 d-flex flex-column align-items-center justify-content-center"
+    action="../Vista/Action/actionBuscarPersona.php"
+    method="get"
+    id="form1"
+    novalidate
+    onsubmit="return validarBusquedaPersona()">
+    <div>
+      <label for="NroDni" class="form-label">Nro de Dni:</label>
+      <input class="form-control" type="text" id="NroDni" name="NroDni" required>
+      <div class="invalid-feedback">Introduzca un DNI válido</div>
 
     </div>
+    <input class="mt-2 btn btn-primary" type="submit" value="Buscar">
   </form>
 
 </main>

@@ -147,3 +147,24 @@ function validarBusquedaAuto() {
 
   return valido;
 }
+
+// Validación de búsqueda de persona
+function validarBusquedaPersona() {
+  let valido = true;
+
+  let nroDni = $("#NroDni");
+
+  // Reiniciar clases
+  nroDni.removeClass("is-invalid is-valid");
+
+  // Validación de DNI: debe contener exactamente 8 dígitos
+  let regexDni = /^\d{8}$/;
+  if (!regexDni.test(nroDni.val())) {
+    nroDni.addClass("is-invalid");
+    valido = false;
+  } else {
+    nroDni.addClass("is-valid");
+  }
+
+  return valido;
+}
